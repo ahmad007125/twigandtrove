@@ -3,7 +3,7 @@
    Cormorant Garamond + Montserrat · #F5F3EE background
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap'); */
 
 /* ── Variables ── */
 :root {
@@ -23,6 +23,7 @@
 html { font-size: 16px; scroll-behavior: smooth; }
 body {
   font-family: var(--sans);
+  font-display: swap;
   background: var(--bg);
   color: var(--body-text);
   min-height: 100vh;
@@ -58,6 +59,7 @@ p { line-height: 1.9; }
 }
 .nav-logo-wordmark {
   font-family: var(--serif);
+  font-display: swap;
   font-size: 18px;
   font-weight: 400;
   letter-spacing: 0.22em;
@@ -130,6 +132,7 @@ p { line-height: 1.9; }
 /* ── Page title (H1, visually hidden for SEO) ── */
 .page-seo-title {
   font-family: var(--sans);
+  font-display: swap;
   font-size: inherit;
   font-weight: inherit;
   letter-spacing: inherit;
@@ -169,6 +172,7 @@ p { line-height: 1.9; }
   bottom: 28px;
   left: 24px;
   font-family: var(--sans);
+  font-display: swap;
   font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.22em;
@@ -232,6 +236,7 @@ p { line-height: 1.9; }
 }
 .about-name {
   font-family: var(--serif);
+  font-display: swap;
   font-size: 36px;
   font-weight: 400;
   letter-spacing: 0.12em;
@@ -285,6 +290,7 @@ p { line-height: 1.9; }
 }
 .projects-title {
   font-family: var(--serif);
+  font-display: swap;
   font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.22em;
@@ -367,6 +373,7 @@ p { line-height: 1.9; }
 }
 .landing-project-title {
   font-family: var(--serif);
+  font-display: swap;
   font-size: 24px;
   font-weight: 400;
   letter-spacing: 0.1em;
@@ -485,6 +492,7 @@ p { line-height: 1.9; }
 .press-item:hover { opacity: 0.7; }
 .press-pub {
   font-family: var(--serif);
+  font-display: swap;
   font-size: 18px;
   font-weight: 400;
   letter-spacing: 0.06em;
@@ -537,6 +545,7 @@ p { line-height: 1.9; }
 }
 .blog-card-title {
   font-family: var(--serif);
+  font-display: swap;
   font-size: 20px;
   font-weight: 400;
   letter-spacing: 0.06em;
@@ -568,6 +577,7 @@ p { line-height: 1.9; }
 }
 .blog-post-title {
   font-family: var(--serif);
+  font-display: swap;
   font-size: 36px;
   font-weight: 400;
   letter-spacing: 0.08em;
@@ -609,6 +619,7 @@ p { line-height: 1.9; }
 }
 .work-headline {
   font-family: var(--serif);
+  font-display: swap;
   font-size: 42px;
   font-weight: 300;
   letter-spacing: 0.04em;
