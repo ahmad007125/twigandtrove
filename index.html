@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Twig & Trove Interiors — Kimberly Knight, Principal Designer, Dallas TX</title>
+  <meta name="description" content="Twig & Trove Interiors is a Dallas-based luxury residential interior design firm led by Principal Designer Kimberly Knight. Unfitted, collected, and layered interiors across Dallas, Milwaukee, and beyond." />
+  <meta property="og:title" content="Twig & Trove Interiors — Kimberly Knight, Dallas TX" />
+  <meta property="og:description" content="Luxury residential interior design. Unfitted, collected, and layered." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.twigandtrove.com" />
+  <link rel="canonical" href="https://www.twigandtrove.com" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    html, body { height: 100%; margin: 0; overflow: hidden; }
+    @media (max-width: 768px) {
+      html, body { overflow: auto; height: auto; }
+      .page-shell { height: auto; min-height: 100vh; }
+      .drag-bar { display: none; }
+    }
+    .page-shell {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-top: var(--nav-height);
+    }
+    .home-track {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      cursor: grab;
+      scrollbar-width: none;
+      gap: 0;
+    }
+    .home-track::-webkit-scrollbar { display: none; }
+    .home-panel {
+      flex: 0 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .home-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      pointer-events: none;
+      display: block;
+    }
+    .home-panel:hover img { transform: scale(1.03); }
+    .home-panel-label {
+      position: absolute;
+      bottom: 28px;
+      left: 24px;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: white;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+      pointer-events: none;
+    }
+    .drag-bar {
+      flex-shrink: 0;
+      padding: 13px 48px;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-top: 0.5px solid var(--rule);
+    }
+    .drag-bar::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 0.5px;
+      background: var(--muted);
+    }
+
+    @media (max-width: 768px) {
+      .nav-hamburger { display: flex !important; }
+      .nav-links { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="index.html">
+    <img class="nav-logo-bird" src="images/ui/logo-bird.png" alt="Twig and Trove Interiors" />
+    <div class="nav-logo-text">
+      <div class="nav-logo-wordmark">Twig &amp; Trove Interiors</div>
+      <div class="nav-logo-sub">Kimberly Knight &nbsp;·&nbsp; Dallas</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li onclick="location.href='about.html'">About</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='portfolio.html'">Portfolio</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='styling.html'">Styling</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='press.html'">Press</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='inspiration.html'">Inspiration</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='work.html'">Work With Us</li>
+  </ul>
+  <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-rule"></div>
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <a href="about.html">About</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="styling.html">Styling</a>
+  <a href="press.html">Press</a>
+  <a href="inspiration.html">Inspiration</a>
+  <a href="work.html">Work With Us</a>
+</div>
+
+<h1 style="position:absolute;left:-9999px;">Twig &amp; Trove Interiors — Kimberly Knight, Principal Designer, Dallas TX</h1>
+
+<div class="page-shell">
+  <div class="home-track" id="home-track">
+    <div class="home-panel" style="width:33vw;" onclick="location.href='landing.html?project=lodge'">
+      <img src="images/home/panel-01-lodge.jpg" alt="Collected Lodge interior design by Kimberly Knight" />
+      <div class="home-panel-label">Collected Lodge</div>
+    </div>
+    <div class="home-panel" style="width:28vw;" onclick="location.href='landing.html?project=shorewood_classic'">
+      <img src="images/home/panel-02-shorewood_classic.jpg" alt="Shorewood Classic interior design by Kimberly Knight" />
+      <div class="home-panel-label">Shorewood Classic</div>
+    </div>
+    <div class="home-panel" style="width:33vw;" onclick="location.href='landing.html?project=modern_farmhouse'">
+      <img src="images/home/panel-03-modern_farmhouse.jpg" alt="Modern Farmhouse interior design by Kimberly Knight" />
+      <div class="home-panel-label">Modern Farmhouse</div>
+    </div>
+    <div class="home-panel" style="width:28vw;" onclick="location.href='landing.html?project=curated_home'">
+      <img src="images/home/panel-04-curated_home.jpg" alt="Curated Home interior design by Kimberly Knight" />
+      <div class="home-panel-label">Curated Home</div>
+    </div>
+    <div class="home-panel" style="width:33vw;" onclick="location.href='landing.html?project=milwaukee_club'">
+      <img src="images/home/panel-05-milwaukee_club.jpg" alt="The Milwaukee Club interior design by Kimberly Knight" />
+      <div class="home-panel-label">The Milwaukee Club</div>
+    </div>
+  </div>
+  <div class="drag-bar">Drag to explore &rarr;</div>
+</div>
+
+<script src="nav.js"></script>
+<script>
+  const track = document.getElementById('home-track');
+  let isDown = false, startX, scrollLeft, didDrag = false;
+
+  track.addEventListener('mousedown', e => {
+    isDown = true; didDrag = false;
+    track.style.cursor = 'grabbing';
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+  });
+  document.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
+  track.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault(); didDrag = true;
+    track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.5;
+  });
+  track.addEventListener('click', e => { if (didDrag) e.stopImmediatePropagation(); }, true);
+
+  let tX, tSL;
+  track.addEventListener('touchstart', e => { tX = e.touches[0].pageX; tSL = track.scrollLeft; }, { passive: true });
+  track.addEventListener('touchmove', e => { track.scrollLeft = tSL - (e.touches[0].pageX - tX) * 1.5; }, { passive: true });
+
+  function toggleMobileMenu() {
+    const menu = document.getElementById('nav-mobile-menu');
+    if (menu) menu.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
