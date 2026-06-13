@@ -41,7 +41,12 @@
 
 <nav class="nav">
   <a class="nav-logo" href="index.html">
-    <img class="nav-logo-bird" src="images/ui/logo-bird.webp" alt="Twig and Trove Interiors" width="52" height="52" decoding="async" />
+    <!-- <img class="nav-logo-bird" src="images/ui/logo-bird.webp" alt="Twig and Trove Interiors" width="52" height="52" decoding="async" /> -->
+    <picture>
+      <source media="(max-width: 767px)" srcset="images/ui/logo-bird-240.webp">
+      <source media="(min-width: 768px)" srcset="images/ui/logo-bird.webp">
+      <img class="nav-logo-bird" src="images/ui/logo-bird.webp" alt="Twig and Trove Interiors" width="52" height="52" decoding="async" loading="lazy">
+    </picture>
     <div class="nav-logo-text">
       <div class="nav-logo-wordmark">Twig &amp; Trove Interiors</div>
       <div class="nav-logo-sub">Kimberly Knight &nbsp;·&nbsp; Dallas</div>
