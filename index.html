@@ -16,7 +16,7 @@
   <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2" crossorigin>
   <link rel="preload" as="image" href="images/home/panel-01-lodge.webp" fetchpriority="high">
-  <link rel="preload" as="image" href="images/ui/logo-bird.webp">
+  <link rel="preload" as="image" href="images/ui/logo-bird-67.webp">
 
   <link rel="stylesheet" href="style.css" />
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
@@ -41,12 +41,13 @@
 
 <nav class="nav">
   <a class="nav-logo" href="index.html">
-    <!-- <img class="nav-logo-bird" src="images/ui/logo-bird.webp" alt="Twig and Trove Interiors" width="52" height="52" decoding="async" /> -->
-    <picture>
-      <source media="(max-width: 767px)" srcset="images/ui/logo-bird-67.webp">
-      <source media="(min-width: 768px)" srcset="images/ui/logo-bird.webp">
-      <img class="nav-logo-bird" src="images/ui/logo-bird.webp" alt="Twig and Trove Interiors" width="52" height="52" decoding="async" loading="lazy">
-    </picture>
+    <img class="nav-logo-bird" src="images/ui/logo-bird-67.webp" alt="Twig and Trove Interiors" width="52" height="52" decoding="async" />
+    <!-- <img
+      srcset="images/ui/logo-bird-67.webp 100w, images/ui/logo-bird-67.webp 140w"
+      sizes="(width <= 600px) 480px,
+            800px"
+      src="images/ui/logo-bird-67.webp"
+      alt="Twig and Trove Interiors" /> -->
     <div class="nav-logo-text">
       <div class="nav-logo-wordmark">Twig &amp; Trove Interiors</div>
       <div class="nav-logo-sub">Kimberly Knight &nbsp;·&nbsp; Dallas</div>
@@ -86,47 +87,52 @@
     <div class="home-track" id="home-track">
       <div class="home-panel" style="width:33vw;" onclick="location.href='landing.html?project=lodge'">
         <!-- <img src="images/home/panel-01-lodge.webp" alt="Collected Lodge interior design by Kimberly Knight" fetchpriority="high" decoding="async" /> -->
-        <picture>
-          <source media="(max-width: 767px)" srcset="images/home/panel-01-lodge-721.webp">
-          <source media="(min-width: 768px)" srcset="images/home/panel-01-lodge.webp">
-          <img class="nav-logo-bird" src="images/home/panel-01-lodge.webp" alt="Collected Lodge interior design by Kimberly Knight" width="721" height="964" decoding="async" loading="lazy">
-        </picture>
+        <img
+          srcset="images/home/panel-01-lodge.webp 480w, images/home/panel-01-lodge.webp 800w"
+          sizes="(width <= 600px) 480px,
+                800px"
+          src="images/home/panel-01-lodge.webp"
+          alt="Collected Lodge interior design by Kimberly Knight" />
         <div class="home-panel-label">Collected Lodge</div>
       </div>
       <div class="home-panel" style="width:28vw;" onclick="location.href='landing.html?project=shorewood_classic'">
         <!-- <img src="images/home/panel-02-shorewood_classic.webp" alt="Shorewood Classic interior design by Kimberly Knight" loading="lazy" decoding="async" /> -->
-        <picture>
-          <source media="(max-width: 767px)" srcset="images/home/panel-02-shorewood_classic-721.webp">
-          <source media="(min-width: 768px)" srcset="images/home/panel-02-shorewood_classic.webp">
-          <img class="nav-logo-bird" src="images/home/panel-02-shorewood_classic.webp" alt="Shorewood Classic interior design by Kimberly Knight" width="721" height="964" decoding="async" loading="lazy">
-        </picture>
+        <img
+          srcset="images/home/panel-02-shorewood_classic.webp 480w, images/home/panel-02-shorewood_classic.webp 800w"
+          sizes="(width <= 600px) 480px,
+                800px"
+          src="images/home/panel-02-shorewood_classic.webp"
+          alt="Shorewood Classic interior design by Kimberly Knight" />
         <div class="home-panel-label">Shorewood Classic</div>
       </div>
       <div class="home-panel" style="width:33vw;" onclick="location.href='landing.html?project=modern_farmhouse'">
         <!-- <img src="images/home/panel-03-modern_farmhouse.webp" alt="Modern Farmhouse interior design by Kimberly Knight" loading="lazy" decoding="async" /> -->
-        <picture>
-          <source media="(max-width: 767px)" srcset="images/home/panel-03-modern_farmhouse-721.webp">
-          <source media="(min-width: 768px)" srcset="images/home/panel-03-modern_farmhouse.webp">
-          <img class="nav-logo-bird" src="images/home/panel-03-modern_farmhouse.webp" alt="Modern Farmhouse interior design by Kimberly Knight" width="721" height="964" decoding="async" loading="lazy">
-        </picture>
+        <img
+          srcset="images/home/panel-03-modern_farmhouse.webp 480w, images/home/panel-03-modern_farmhouse.webp 800w"
+          sizes="(width <= 600px) 480px,
+                800px"
+          src="images/home/panel-03-modern_farmhouse.webp"
+          alt="Modern Farmhouse interior design by Kimberly Knight" />
         <div class="home-panel-label">Modern Farmhouse</div>
       </div>
       <div class="home-panel" style="width:28vw;" onclick="location.href='landing.html?project=curated_home'">
         <!-- <img src="images/home/panel-04-curated_home.webp" alt="Curated Home interior design by Kimberly Knight" loading="lazy" decoding="async" /> -->
-        <picture>
-          <source media="(max-width: 767px)" srcset="images/home/panel-04-curated_home-721.webp">
-          <source media="(min-width: 768px)" srcset="images/home/panel-04-curated_home.webp">
-          <img class="nav-logo-bird" src="images/home/panel-04-curated_home.webp" alt="Curated Home interior design by Kimberly Knight" width="721" height="964" decoding="async" loading="lazy">
-        </picture>
+        <img
+          srcset="images/home/panel-04-curated_home.webp 480w, images/home/panel-04-curated_home.webp 800w"
+          sizes="(width <= 600px) 480px,
+                800px"
+          src="images/home/panel-04-curated_home.webp"
+          alt="Curated Home interior design by Kimberly Knight" />
         <div class="home-panel-label">Curated Home</div>
       </div>
       <div class="home-panel" style="width:33vw;" onclick="location.href='landing.html?project=milwaukee_club'">
         <!-- <img src="images/home/panel-05-milwaukee_club.webp" alt="The Milwaukee Club interior design by Kimberly Knight" loading="lazy" decoding="async" /> -->
-        <picture>
-          <source media="(max-width: 767px)" srcset="images/home/panel-05-milwaukee_club-721.webp">
-          <source media="(min-width: 768px)" srcset="images/home/panel-05-milwaukee_club.webp">
-          <img class="nav-logo-bird" src="images/home/panel-05-milwaukee_club.webp" alt="The Milwaukee Club interior design by Kimberly Knight" width="721" height="964" decoding="async" loading="lazy">
-        </picture>
+        <img
+          srcset="images/home/panel-05-milwaukee_club.webp 480w, images/home/panel-05-milwaukee_club.webp 800w"
+          sizes="(width <= 600px) 480px,
+                800px"
+          src="images/home/panel-05-milwaukee_club.webp"
+          alt="The Milwaukee Club interior design by Kimberly Knight" />
         <div class="home-panel-label">The Milwaukee Club</div>
       </div>
     </div>
