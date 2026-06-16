@@ -176,11 +176,21 @@
   const track = document.getElementById('home-track');
   let isDown = false, startX, scrollLeft, didDrag = false;
 
-  track.addEventListener('mousedown', e => {
-    isDown = true; didDrag = false;
-    track.style.cursor = 'grabbing';
-    startX = e.pageX - track.offsetLeft;
-    scrollLeft = track.scrollLeft;
+  // track.addEventListener('mousedown', e => {
+  //   isDown = true; didDrag = false;
+  //   track.style.cursor = 'grabbing';
+  //   startX = e.pageX - track.offsetLeft;
+  //   scrollLeft = track.scrollLeft;
+  // });
+
+  track.addEventListener('mousemove', e => {
+    if (!isDown) return;
+
+    e.preventDefault();
+    didDrag = true;
+
+    track.scrollLeft =
+      scrollLeft - (e.pageX - trackLeft - startX) * 1.5;
   });
   document.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
   track.addEventListener('mousemove', e => {
