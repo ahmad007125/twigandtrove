@@ -22,7 +22,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap"></noscript>
 
-  <link rel="preload" as="image" href="images/home/panel-01-lodge-558.webp" imagesrcset="images/home/panel-01-lodge-412.webp 480w, images/home/panel-01-lodge-558.webp 640w" imagesizes="(max-width: 600px) 412px, 558px"/>
+  <link rel="preload" as="image" href="images/home/panel-01-lodge-558.webp" imagesrcset="images/home/panel-01-lodge-412.webp 480w, images/home/panel-01-lodge-558.webp 640w" imagesizes="(max-width: 600px) 412px, 558px" fetchpriority="high"/>
 
   <style>
     html,body{height:100%;margin:0;overflow:hidden}
@@ -176,21 +176,11 @@
   const track = document.getElementById('home-track');
   let isDown = false, startX, scrollLeft, didDrag = false;
 
-  // track.addEventListener('mousedown', e => {
-  //   isDown = true; didDrag = false;
-  //   track.style.cursor = 'grabbing';
-  //   startX = e.pageX - track.offsetLeft;
-  //   scrollLeft = track.scrollLeft;
-  // });
-
-  track.addEventListener('mousemove', e => {
-    if (!isDown) return;
-
-    e.preventDefault();
-    didDrag = true;
-
-    track.scrollLeft =
-      scrollLeft - (e.pageX - trackLeft - startX) * 1.5;
+  track.addEventListener('mousedown', e => {
+    isDown = true; didDrag = false;
+    track.style.cursor = 'grabbing';
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
   });
   document.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
   track.addEventListener('mousemove', e => {
