@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Project — Twig & Trove Interiors Dallas</title>
+  <meta name="description" id="page-desc" content="Interior design project by Kimberly Knight of Twig and Trove Interiors Dallas." />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D44MFG1JCW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D44MFG1JCW');
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-logo" href="index.html">
+    <img class="nav-logo-bird" src="images/ui/logo-bird.png" alt="Twig and Trove Interiors" />
+    <div class="nav-logo-text">
+      <div class="nav-logo-wordmark">Twig &amp; Trove Interiors</div>
+      <div class="nav-logo-sub">Kimberly Knight &nbsp;·&nbsp; Dallas</div>
+    </div>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li onclick="location.href='about.html'">About</li>
+    <li class="pipe">|</li>
+    <li id="nav-portfolio" onclick="location.href='portfolio.html'">Portfolio</li>
+    <li class="pipe">|</li>
+    <li id="nav-styling" onclick="location.href='styling.html'">Styling</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='press.html'">Press</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='inspiration.html'">Inspiration</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='work.html'">Work With Us</li>
+  </ul>
+  <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-rule"></div>
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <a href="about.html">About</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="styling.html">Styling</a>
+  <a href="press.html">Press</a>
+  <a href="inspiration.html">Inspiration</a>
+  <a href="work.html">Work With Us</a>
+</div>
+
+<div class="page-wrap">
+  <div class="landing-wrap">
+    <div class="landing-thumbs-col">
+      <div class="landing-grid" id="thumb-grid"></div>
+    </div>
+    <div class="landing-info-col">
+      <div>
+        <div class="landing-rule"></div>
+        <div class="landing-project-title" id="project-title"></div>
+        <p class="landing-description" id="project-desc"></p>
+        <div class="landing-credits" id="project-credits"></div>
+      </div>
+      <div>
+        <a class="landing-back" id="back-link" href="#">&#8592; Back</a>
+      </div>
+    </div>
+  </div>
+  <div id="footer-wrap"></div>
+</div>
+
+<script src="projects.js"></script>
+<script src="nav.js"></script>
+<script>
+  // Get project key from URL
+  const params = new URLSearchParams(location.search);
+  const key = params.get('project');
+
+  // Find project in either portfolio or styling
+  const allProjects = [...PROJECTS.portfolio, ...PROJECTS.styling];
+  const project = allProjects.find(p => p.key === key);
+  const isPortfolio = PROJECTS.portfolio.find(p => p.key === key);
+
+  if (!project) {
+    location.href = 'portfolio.html';
+  } else {
+    // Set page title and meta
+    document.getElementById('page-title').textContent = `${project.title} — Twig & Trove Interiors Dallas`;
+    document.getElementById('page-desc').setAttribute('content', project.description);
+
+    // Set active nav
+    if (isPortfolio) {
+      document.getElementById('nav-portfolio').classList.add('active');
+    } else {
+      document.getElementById('nav-styling').classList.add('active');
+    }
+
+    // Back link
+    document.getElementById('back-link').href = isPortfolio ? 'portfolio.html' : 'styling.html';
+
+    // Project info
+    document.getElementById('project-title').textContent = project.title;
+    document.getElementById('project-desc').textContent = project.description;
+
+    const creditsEl = document.getElementById('project-credits');
+    project.credits.forEach(c => {
+      const line = document.createElement('div');
+      line.innerHTML = `<strong style="text-transform:uppercase;letter-spacing:0.14em;">${c.label}:</strong> ${c.value}`;
+      creditsEl.appendChild(line);
+    });
+
+    // Thumbnails
+    const grid = document.getElementById('thumb-grid');
+    for (let i = 1; i <= project.imageCount; i++) {
+      const div = document.createElement('div');
+      div.className = 'landing-thumb';
+      div.onclick = () => location.href = `gallery.html?project=${key}&start=${i}`;
+      const img = document.createElement('img');
+      img.src = projectImagePath(key, i);
+      const alt = (project.altTags && project.altTags[i-1])
+        ? project.altTags[i-1]
+        : `${project.title} — image ${i} by Kimberly Knight of Twig and Trove Interiors Dallas`;
+      img.alt = alt;
+      img.loading = 'lazy';
+      div.appendChild(img);
+      grid.appendChild(div);
+    }
+    document.getElementById('footer-wrap').innerHTML = footerHTML();
+  }
+
+  function toggleMobileMenu() {
+    const menu = document.getElementById('nav-mobile-menu');
+    if (menu) menu.classList.toggle('open');
+  }
+</script>
+</body>
+</html>

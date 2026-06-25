@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work With Us — Twig & Trove Interiors Dallas Interior Designer</title>
+  <meta name="description" content="Begin a conversation with Kimberly Knight of Twig & Trove Interiors. Luxury residential interior design in Dallas, TX and nationwide." />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D44MFG1JCW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D44MFG1JCW');
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    @media (max-width: 768px) {
+      .nav-hamburger { display: flex !important; }
+      .nav-links { display: none !important; }
+    }
+  </style>
+  <link rel="canonical" href="https://www.twigandtrove.com/work.html" />
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-logo" href="index.html">
+    <img class="nav-logo-bird" src="images/ui/logo-bird.png" alt="Twig and Trove Interiors" />
+    <div class="nav-logo-text">
+      <div class="nav-logo-wordmark">Twig &amp; Trove Interiors</div>
+      <div class="nav-logo-sub">Kimberly Knight &nbsp;·&nbsp; Dallas</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li onclick="location.href='about.html'">About</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='portfolio.html'">Portfolio</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='styling.html'">Styling</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='press.html'">Press</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='inspiration.html'">Inspiration</li>
+    <li class="pipe">|</li>
+    <li class="active">Work With Us</li>
+  </ul>
+  <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-rule"></div>
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <a href="about.html">About</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="styling.html">Styling</a>
+  <a href="press.html">Press</a>
+  <a href="inspiration.html">Inspiration</a>
+  <a href="work.html">Work With Us</a>
+</div>
+
+<div class="page-wrap">
+  <h1 class="page-seo-title" style="position:absolute;left:-9999px;">Work With Us — Twig &amp; Trove Interiors Dallas Interior Designer</h1>
+  <div class="work-wrap">
+    <div class="work-content-col">
+      <div class="work-headline">Every project begins<br>with a conversation.</div>
+      <p class="work-intro">Twig &amp; Trove takes on a select number of residential projects each year in order to give each client and each home the attention it deserves. If you are beginning a renovation, building new, or simply ready for a home that feels more intentionally yours, we would love to hear from you.</p>
+      <div class="work-contact-item">
+        <div class="work-contact-label">Email</div>
+        <div class="work-contact-value"><a href="mailto:info@twigandtrove.com">info@twigandtrove.com</a></div>
+      </div>
+      <div class="work-contact-item">
+        <div class="work-contact-label">Phone</div>
+        <div class="work-contact-value"><a href="tel:2145779236">214.577.9236</a></div>
+      </div>
+      <div class="work-locations">
+        <div class="work-locations-label">Completed Projects</div>
+        <ul class="work-locations-list">
+          <li>Dallas, Texas</li>
+          <li>Milwaukee, Wisconsin</li>
+          <li>Chicago, Illinois</li>
+          <li>Hinsdale, Illinois</li>
+          <li>Cashiers, North Carolina</li>
+          <li>Orange Beach, Alabama</li>
+          <li>Santa Monica, California</li>
+          <li>Miami Beach, Florida</li>
+          <li>Loch Lloyd, Missouri</li>
+        </ul>
+      </div>
+    </div>
+    <div class="work-photo-col">
+      <img src="images/work/work-photo-01.jpg" alt="Interior design by Kimberly Knight of Twig and Trove Interiors Dallas" />
+    </div>
+  </div>
+  <div id="footer-wrap"></div>
+</div>
+
+<script src="nav.js"></script>
+<script>
+  document.getElementById('footer-wrap').innerHTML = footerHTML();
+
+  function toggleMobileMenu() {
+    const menu = document.getElementById('nav-mobile-menu');
+    if (menu) menu.classList.toggle('open');
+  }
+</script>
+</body>
+</html>

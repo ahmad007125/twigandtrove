@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Journal — Twig & Trove Interiors Dallas</title>
+  <meta name="description" id="page-desc" content="Design journal by Kimberly Knight of Twig and Trove Interiors Dallas." />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D44MFG1JCW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D44MFG1JCW');
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    @media (max-width: 768px) {
+      .nav-hamburger { display: flex !important; }
+      .nav-links { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-logo" href="index.html">
+    <img class="nav-logo-bird" src="images/ui/logo-bird.png" alt="Twig and Trove Interiors" />
+    <div class="nav-logo-text">
+      <div class="nav-logo-wordmark">Twig &amp; Trove Interiors</div>
+      <div class="nav-logo-sub">Kimberly Knight &nbsp;&middot;&nbsp; Dallas</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li onclick="location.href='about.html'">About</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='portfolio.html'">Portfolio</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='styling.html'">Styling</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='press.html'">Press</li>
+    <li class="pipe">|</li>
+    <li class="active" onclick="location.href='inspiration.html'">Inspiration</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='work.html'">Work With Us</li>
+  </ul>
+  <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-rule"></div>
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <a href="about.html">About</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="styling.html">Styling</a>
+  <a href="press.html">Press</a>
+  <a href="inspiration.html">Inspiration</a>
+  <a href="work.html">Work With Us</a>
+</div>
+
+<div class="page-wrap">
+  <div class="blog-post-wrap" id="post-wrap">
+    <a class="blog-post-back" href="inspiration.html">&#8592; Inspiration</a>
+    <div id="post-content"></div>
+  </div>
+  <div id="footer-wrap"></div>
+</div>
+
+<script src="projects.js"></script>
+<script src="nav.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const key = params.get('post');
+  const post = BLOG_POSTS.find(p => p.key === key);
+
+  if (!post) {
+    location.href = 'inspiration.html';
+  } else {
+    document.getElementById('page-title').textContent = `${post.title} — Twig & Trove Interiors`;
+    document.getElementById('page-desc').setAttribute('content', post.body.substring(0, 160));
+
+    const content = document.getElementById('post-content');
+    const paragraphs = post.body.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('\n');
+
+    // Build image array — use customImages if defined, otherwise auto-generate
+    const images = post.customImages ? post.customImages : [];
+    if (!post.customImages) {
+      for (let i = 1; i <= post.imageCount; i++) {
+        images.push({ src: `images/blog/${post.key}-${String(i).padStart(2,'0')}.jpg`, caption: '' });
+      }
+    }
+
+    // Normalise to object format
+    const normImages = images.map(img =>
+      typeof img === 'string' ? { src: img, caption: '' } : img
+    );
+
+    // Helper to render an image with optional caption
+    function imgHTML(imgObj, altText) {
+      const cap = imgObj.caption
+        ? `<figcaption style="font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:8px;margin-bottom:24px;">${imgObj.caption}</figcaption>`
+        : '';
+      return `<figure style="margin:32px 0 0;">`
+        + `<img src="${imgObj.src}" alt="${altText}" loading="lazy" style="width:100%;display:block;" />`
+        + cap
+        + `</figure>`;
+    }
+
+    const paras = post.body.split('\n\n').filter(p => p.trim());
+    let html = `
+      <div class="blog-post-category">${post.category}</div>
+      <h1 class="blog-post-title">${post.title}</h1>
+      <div class="blog-post-date">${post.date}</div>
+      <div class="blog-post-body">
+    `;
+
+    // First image before text
+    if (normImages[0]) {
+      html += imgHTML(normImages[0], post.title + ' — Twig and Trove Interiors');
+    }
+
+    paras.forEach((para, i) => {
+      html += `<p>${para}</p>`;
+      const imgIdx = i + 1;
+      if (normImages[imgIdx]) {
+        html += imgHTML(normImages[imgIdx], post.title + ' — Twig and Trove Interiors');
+      }
+    });
+
+    html += '</div>';
+    content.innerHTML = html;
+    document.getElementById('footer-wrap').innerHTML = footerHTML();
+  }
+
+  function toggleMobileMenu() {
+    const menu = document.getElementById('nav-mobile-menu');
+    if (menu) menu.classList.toggle('open');
+  }
+</script>
+</body>
+</html>

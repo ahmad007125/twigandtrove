@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inspiration — Twig & Trove Interiors Dallas</title>
+  <meta name="description" content="Design inspiration, travel notes, and observations from Kimberly Knight of Twig & Trove Interiors Dallas." />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D44MFG1JCW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D44MFG1JCW');
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    @media (max-width: 768px) {
+      .nav-hamburger { display: flex !important; }
+      .nav-links { display: none !important; }
+    }
+  </style>
+  <link rel="canonical" href="https://www.twigandtrove.com/inspiration.html" />
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-logo" href="index.html">
+    <img class="nav-logo-bird" src="images/ui/logo-bird.png" alt="Twig and Trove Interiors" />
+    <div class="nav-logo-text">
+      <div class="nav-logo-wordmark">Twig &amp; Trove Interiors</div>
+      <div class="nav-logo-sub">Kimberly Knight &nbsp;&middot;&nbsp; Dallas</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li onclick="location.href='about.html'">About</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='portfolio.html'">Portfolio</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='styling.html'">Styling</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='press.html'">Press</li>
+    <li class="pipe">|</li>
+    <li class="active">Inspiration</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='work.html'">Work With Us</li>
+  </ul>
+  <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-rule"></div>
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <a href="about.html">About</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="styling.html">Styling</a>
+  <a href="press.html">Press</a>
+  <a href="inspiration.html">Inspiration</a>
+  <a href="work.html">Work With Us</a>
+</div>
+
+<div class="page-wrap">
+  <div class="inspiration-wrap">
+    <div class="section-label">Inspiration</div>
+    <div class="inspiration-grid" id="blog-grid"></div>
+  </div>
+  <div id="footer-wrap"></div>
+</div>
+
+<script src="projects.js"></script>
+<script src="nav.js"></script>
+<script>
+  const grid = document.getElementById('blog-grid');
+  BLOG_POSTS.forEach(post => {
+    const card = document.createElement('div');
+    card.className = 'blog-card';
+    card.onclick = () => location.href = `blog.html?post=${post.key}`;
+    const imgSrc = post.imageCount > 0 ? `images/blog/${post.key}-01.jpg` : '';
+    card.innerHTML = `
+      ${imgSrc ? `<div class="blog-card-img"><img src="${imgSrc}" alt="${post.title} — Twig and Trove Interiors" loading="lazy" /></div>` : ''}
+      <div class="blog-card-date">${post.category} &nbsp;&middot;&nbsp; ${post.date}</div>
+      <div class="blog-card-title">${post.title}</div>
+    `;
+    grid.appendChild(card);
+  });
+  document.getElementById('footer-wrap').innerHTML = footerHTML();
+
+  function toggleMobileMenu() {
+    const menu = document.getElementById('nav-mobile-menu');
+    if (menu) menu.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
