@@ -87,7 +87,7 @@
     const images = post.customImages ? post.customImages : [];
     if (!post.customImages) {
       for (let i = 1; i <= post.imageCount; i++) {
-        images.push({ src: `images/blog/${post.key}-${String(i).padStart(2,'0')}.jpg`, caption: '' });
+        images.push({ src: `images/blog/${post.key}-${String(i).padStart(2,'0')}.webp`, caption: '' });
       }
     }
 

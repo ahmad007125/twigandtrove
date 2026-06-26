@@ -172,19 +172,19 @@ const BLOG_POSTS = [
     category: 'Trade',
     imageCount: 15,
     customImages: [
-      { src: 'images/blog/highpoint-02.jpg', caption: 'Antique & Design Center' },
-      { src: 'images/blog/highpoint-03.jpg', caption: 'Antique & Design Center' },
-      { src: 'images/blog/highpoint-13.jpg', caption: 'Lucky Fish Gallery at Lee Industries' },
-      { src: 'images/blog/highpoint-12.jpg', caption: 'Lee Industries' },
-      { src: 'images/blog/highpoint-04.jpg', caption: '214 Modern Vintage' },
-      { src: 'images/blog/highpoint-05.jpg', caption: 'Modern History' },
-      { src: 'images/blog/highpoint-07.jpg', caption: 'Odette Collective' },
-      { src: 'images/blog/highpoint-08.jpg', caption: 'Schwung' },
-      { src: 'images/blog/highpoint-09.jpg', caption: 'Raoul Morren at Schwung' },
-      { src: 'images/blog/highpoint-14.jpg', caption: 'Chelsea on Green' },
-      { src: 'images/blog/highpoint-15.jpg', caption: 'Chelsea on Green' },
-      { src: 'images/blog/highpoint-10.jpg', caption: 'Amadi Collective' },
-      { src: 'images/blog/highpoint-11.jpg', caption: 'Amadi Collective at Verellen' },
+      { src: 'images/blog/highpoint-02.webp', caption: 'Antique & Design Center' },
+      { src: 'images/blog/highpoint-03.webp', caption: 'Antique & Design Center' },
+      { src: 'images/blog/highpoint-13.webp', caption: 'Lucky Fish Gallery at Lee Industries' },
+      { src: 'images/blog/highpoint-12.webp', caption: 'Lee Industries' },
+      { src: 'images/blog/highpoint-04.webp', caption: '214 Modern Vintage' },
+      { src: 'images/blog/highpoint-05.webp', caption: 'Modern History' },
+      { src: 'images/blog/highpoint-07.webp', caption: 'Odette Collective' },
+      { src: 'images/blog/highpoint-08.webp', caption: 'Schwung' },
+      { src: 'images/blog/highpoint-09.webp', caption: 'Raoul Morren at Schwung' },
+      { src: 'images/blog/highpoint-14.webp', caption: 'Chelsea on Green' },
+      { src: 'images/blog/highpoint-15.webp', caption: 'Chelsea on Green' },
+      { src: 'images/blog/highpoint-10.webp', caption: 'Amadi Collective' },
+      { src: 'images/blog/highpoint-11.webp', caption: 'Amadi Collective at Verellen' },
     ],
     body: `There's a certain thrill that comes from walking into a room and knowing — just knowing — that nothing in it came off a production line. High Point Market has always been the design world's biggest stage, but if you know where to look, it's also a treasure hunter's paradise. This spring, I made it my mission to seek out the showrooms that celebrate the rare, the storied, and the singular. No endless rows of matching sofas. No trend reports. Just genuinely good stuff — pieces with history, character, and a soul that no factory could manufacture.
 
@@ -217,10 +217,10 @@ The pieces I found here won't be replicated. They won't show up in a catalog. Th
     category: 'Design',
     imageCount: 5,
     customImages: [
-      'images/blog/larder-01.jpg',
-      'images/blog/larder-03.jpg',
-      'images/blog/larder-05.jpg',
-      'images/blog/larder-06.jpg',
+      'images/blog/larder-01.webp',
+      'images/blog/larder-03.webp',
+      'images/blog/larder-05.webp',
+      'images/blog/larder-06.webp',
     ],
     body: `When my husband and I began looking for a home, I had one non-negotiable: I wanted a kitchen I could design myself. We found exactly what I was looking for in a 1911 historic lodge home — a space with dark beamed ceilings, original woodwork, and the kind of bones that take a century to earn. A house that deserved something more considered than a traditional fitted kitchen. It deserved an unfitted kitchen. An English kitchen.
 
@@ -345,10 +345,10 @@ The palette I return to most often is built around a warm neutral — not quite 
 // Helper: get image path for a project
 function projectImagePath(key, index, padded = true) {
   const num = padded ? String(index).padStart(2, '0') : index;
-  return `images/${key}/${key}-${num}.jpg`;
+  return `images/${key}/${key}-${num}.webp`;
 }
 
 // Helper: get cover image path
 function coverImagePath(key) {
-  return `images/covers/${key}.jpg`;
+  return `images/covers/${key}.webp`;
 }

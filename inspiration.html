@@ -76,7 +76,7 @@
     const card = document.createElement('div');
     card.className = 'blog-card';
     card.onclick = () => location.href = `blog.html?post=${post.key}`;
-    const imgSrc = post.imageCount > 0 ? `images/blog/${post.key}-01.jpg` : '';
+    const imgSrc = post.imageCount > 0 ? `images/blog/${post.key}-01.webp` : '';
     card.innerHTML = `
       ${imgSrc ? `<div class="blog-card-img"><img src="${imgSrc}" alt="${post.title} — Twig and Trove Interiors" loading="lazy" /></div>` : ''}
       <div class="blog-card-date">${post.category} &nbsp;&middot;&nbsp; ${post.date}</div>
