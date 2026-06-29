@@ -8,24 +8,24 @@
 
   <!-- Google tag (gtag.js) -->
   <script>
-    window.addEventListener("load", function () {
-      setTimeout(loadAnalytics, 2000);
-
-      function loadAnalytics() {
-        const script = document.createElement("script");
-        script.src = "https://www.googletagmanager.com/gtag/js?id=G-D44MFG1JCW";
-        script.async = true;
-        document.head.appendChild(script);
-
-        script.onload = function () {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          window.gtag = gtag;
-
-          gtag("js", new Date());
-          gtag("config", "G-D44MFG1JCW");
-        };
-      }
+    let loaded = false;
+    function loadAnalytics() {
+      if (loaded) return;
+      loaded = true;
+      const script = document.createElement("script");
+      script.src = "https://www.googletagmanager.com/gtag/js?id=G-D44MFG1JCW";
+      script.async = true;
+      document.head.appendChild(script);
+      script.onload = function () {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag("js", new Date());
+        gtag("config", "G-D44MFG1JCW");
+      };
+    }
+    ["scroll", "mousemove", "click", "touchstart"].forEach(event => {
+      window.addEventListener(event, loadAnalytics, { once: true, passive: true });
     });
   </script>
 
