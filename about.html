@@ -140,12 +140,16 @@
 
 <script src="nav.js" defer></script>
 <script>
-  document.getElementById('footer-wrap').innerHTML = footerHTML();
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      document.getElementById('footer-wrap').innerHTML = footerHTML();
 
-  function toggleMobileMenu() {
-    const menu = document.getElementById('nav-mobile-menu');
-    if (menu) menu.classList.toggle('open');
-  }
+      function toggleMobileMenu() {
+        const menu = document.getElementById('nav-mobile-menu');
+        if (menu) menu.classList.toggle('open');
+      }
+    });
+  })
 </script>
 </body>
 </html>
