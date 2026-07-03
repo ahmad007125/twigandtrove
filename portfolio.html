@@ -188,8 +188,11 @@
       panel.className = 'project-panel';
       const coverImg = p.key === 'modern_farmhouse' ? `images/${p.key}/${p.key}-03.webp` : p.key === 'lodge' ? `images/home/panel-01-lodge-558.webp` : `images/${p.key}/${p.key}-01.webp`;
       panel.innerHTML = `
-        <img src="${coverImg}"
-            alt="${p.title} interior design by Kimberly Knight of Twig and Trove Interiors Dallas" />
+        <img
+          src="${coverImg}"
+          alt="${p.title} interior design by Kimberly Knight of Twig and Trove Interiors Dallas"
+          fetchpriority="high"
+        />
         <div class="project-panel-info">
           <div class="project-panel-title">${p.title}</div>
           <div class="project-panel-sub">View Project</div>
