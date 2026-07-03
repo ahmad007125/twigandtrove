@@ -19,6 +19,7 @@ const PROJECTS = {
     {
       key: 'modern_farmhouse',
       title: 'Modern Farmhouse',
+      fetchPriority: 'high',
       description: 'A new home in the Wisconsin farmhouse vernacular, with interiors by Twig & Trove. Conceived for a young family who wanted a home that lives like a great vacation — warm, easy, and deeply considered in every detail.',
       credits: [
         { label: 'Photography', value: 'Werner Straube' },
@@ -64,6 +65,7 @@ const PROJECTS = {
     {
       key: 'shorewood_classic',
       title: 'Shorewood Classic',
+      fetchPriority: 'high',
       description: 'A classic Milwaukee home brought forward with a quietly modern sensibility. Moody dining room, layered textiles, and a restrained palette that honors the house without being beholden to it.',
       credits: [
         { label: 'Photography', value: 'Kyle Szef' },
