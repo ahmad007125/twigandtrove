@@ -7,6 +7,7 @@ const PROJECTS = {
     {
       key: 'lodge',
       title: 'Collected Lodge',
+      fetchPriority: 'high',
       description: 'A 1911 Wisconsin lodge home restored with deep respect for its original character. Dark beamed ceilings, original woodwork, and an unfitted English kitchen anchor a project that layers antique finds with contemporary upholstery — always in conversation with the architecture.',
       credits: [
         { label: 'Photography', value: 'Werner Straube' },

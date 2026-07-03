@@ -41,7 +41,7 @@
   </noscript>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap"></noscript>
-  
+
   <style>
     html, body { height: 100%; margin: 0; overflow: hidden; }
     @media (max-width: 768px) {
@@ -177,54 +177,56 @@
   </div>
 </main>
 
-<script src="projects.js"></script>
-<script src="nav.js"></script>
-<script>
-  const track = document.getElementById('projects-track');
+<script src="projects.js" defer></script>
+<script src="nav.js" defer></script>
+<script defer>
+  window.addEventListener('load', function () {
+    const track = document.getElementById('projects-track');
 
-  PROJECTS.portfolio.forEach(p => {
-    const panel = document.createElement('div');
-    panel.className = 'project-panel';
-    const coverImg = p.key === 'modern_farmhouse' ? `images/${p.key}/${p.key}-03.webp` : p.key === 'lodge' ? `images/home/panel-01-lodge-558.webp` : `images/${p.key}/${p.key}-01.webp`;
-    panel.innerHTML = `
-      <img src="${coverImg}"
-           alt="${p.title} interior design by Kimberly Knight of Twig and Trove Interiors Dallas" />
-      <div class="project-panel-info">
-        <div class="project-panel-title">${p.title}</div>
-        <div class="project-panel-sub">View Project</div>
-      </div>
-    `;
-    panel.addEventListener('click', () => { location.href = `landing.html?project=${p.key}`; });
-    track.appendChild(panel);
+    PROJECTS.portfolio.forEach(p => {
+      const panel = document.createElement('div');
+      panel.className = 'project-panel';
+      const coverImg = p.key === 'modern_farmhouse' ? `images/${p.key}/${p.key}-03.webp` : p.key === 'lodge' ? `images/home/panel-01-lodge-558.webp` : `images/${p.key}/${p.key}-01.webp`;
+      panel.innerHTML = `
+        <img src="${coverImg}"
+            alt="${p.title} interior design by Kimberly Knight of Twig and Trove Interiors Dallas" />
+        <div class="project-panel-info">
+          <div class="project-panel-title">${p.title}</div>
+          <div class="project-panel-sub">View Project</div>
+        </div>
+      `;
+      panel.addEventListener('click', () => { location.href = `landing.html?project=${p.key}`; });
+      track.appendChild(panel);
+    });
+
+    document.getElementById('footer-wrap').innerHTML = footerHTML();
+
+    let isDown = false, startX, scrollLeft, didDrag = false;
+    track.addEventListener('mousedown', e => {
+      isDown = true; didDrag = false;
+      track.style.cursor = 'grabbing';
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+    });
+    document.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
+    track.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault(); didDrag = true;
+      track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.5;
+    });
+    track.querySelectorAll && track.addEventListener('click', e => {
+      if (didDrag) e.stopImmediatePropagation();
+    }, true);
+
+    let tX, tSL;
+    track.addEventListener('touchstart', e => { tX = e.touches[0].pageX; tSL = track.scrollLeft; }, { passive: true });
+    track.addEventListener('touchmove', e => { track.scrollLeft = tSL - (e.touches[0].pageX - tX) * 1.5; }, { passive: true });
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('nav-mobile-menu');
+      if (menu) menu.classList.toggle('open');
+    }
   });
-
-  document.getElementById('footer-wrap').innerHTML = footerHTML();
-
-  let isDown = false, startX, scrollLeft, didDrag = false;
-  track.addEventListener('mousedown', e => {
-    isDown = true; didDrag = false;
-    track.style.cursor = 'grabbing';
-    startX = e.pageX - track.offsetLeft;
-    scrollLeft = track.scrollLeft;
-  });
-  document.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
-  track.addEventListener('mousemove', e => {
-    if (!isDown) return;
-    e.preventDefault(); didDrag = true;
-    track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.5;
-  });
-  track.querySelectorAll && track.addEventListener('click', e => {
-    if (didDrag) e.stopImmediatePropagation();
-  }, true);
-
-  let tX, tSL;
-  track.addEventListener('touchstart', e => { tX = e.touches[0].pageX; tSL = track.scrollLeft; }, { passive: true });
-  track.addEventListener('touchmove', e => { track.scrollLeft = tSL - (e.touches[0].pageX - tX) * 1.5; }, { passive: true });
-
-  function toggleMobileMenu() {
-    const menu = document.getElementById('nav-mobile-menu');
-    if (menu) menu.classList.toggle('open');
-  }
 </script>
 </body>
 </html>
