@@ -160,48 +160,49 @@
 <script src="projects.js" defer></script>
 <script src="nav.js" defer></script>
 <script>
-  const track = document.getElementById('projects-track');
+  window.addEventListener('load', function () {
+    const track = document.getElementById('projects-track');
+    PROJECTS.styling.forEach(p => {
+      const panel = document.createElement('div');
+      panel.className = 'project-panel';
+      panel.innerHTML = `
+        <img src="images/${p.key}/${p.key}-01.webp"
+            alt="${p.title} editorial styling by Kimberly Knight of Twig and Trove Interiors" />
+        <div class="project-panel-info">
+          <div class="project-panel-title">${p.title}</div>
+          <div class="project-panel-sub">View Project</div>
+        </div>
+      `;
+      panel.addEventListener('click', () => { location.href = `landing.html?project=${p.key}`; });
+      track.appendChild(panel);
+    });
 
-  PROJECTS.styling.forEach(p => {
-    const panel = document.createElement('div');
-    panel.className = 'project-panel';
-    panel.innerHTML = `
-      <img src="images/${p.key}/${p.key}-01.webp"
-           alt="${p.title} editorial styling by Kimberly Knight of Twig and Trove Interiors" />
-      <div class="project-panel-info">
-        <div class="project-panel-title">${p.title}</div>
-        <div class="project-panel-sub">View Project</div>
-      </div>
-    `;
-    panel.addEventListener('click', () => { location.href = `landing.html?project=${p.key}`; });
-    track.appendChild(panel);
+    document.getElementById('footer-wrap').innerHTML = footerHTML();
+
+    let isDown = false, startX, scrollLeft, didDrag = false;
+    track.addEventListener('mousedown', e => {
+      isDown = true; didDrag = false;
+      track.style.cursor = 'grabbing';
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+    });
+    document.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
+    track.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault(); didDrag = true;
+      track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.5;
+    });
+    track.addEventListener('click', e => { if (didDrag) e.stopImmediatePropagation(); }, true);
+
+    let tX, tSL;
+    track.addEventListener('touchstart', e => { tX = e.touches[0].pageX; tSL = track.scrollLeft; }, { passive: true });
+    track.addEventListener('touchmove', e => { track.scrollLeft = tSL - (e.touches[0].pageX - tX) * 1.5; }, { passive: true });
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('nav-mobile-menu');
+      if (menu) menu.classList.toggle('open');
+    }
   });
-
-  document.getElementById('footer-wrap').innerHTML = footerHTML();
-
-  let isDown = false, startX, scrollLeft, didDrag = false;
-  track.addEventListener('mousedown', e => {
-    isDown = true; didDrag = false;
-    track.style.cursor = 'grabbing';
-    startX = e.pageX - track.offsetLeft;
-    scrollLeft = track.scrollLeft;
-  });
-  document.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
-  track.addEventListener('mousemove', e => {
-    if (!isDown) return;
-    e.preventDefault(); didDrag = true;
-    track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.5;
-  });
-  track.addEventListener('click', e => { if (didDrag) e.stopImmediatePropagation(); }, true);
-
-  let tX, tSL;
-  track.addEventListener('touchstart', e => { tX = e.touches[0].pageX; tSL = track.scrollLeft; }, { passive: true });
-  track.addEventListener('touchmove', e => { track.scrollLeft = tSL - (e.touches[0].pageX - tX) * 1.5; }, { passive: true });
-
-  function toggleMobileMenu() {
-    const menu = document.getElementById('nav-mobile-menu');
-    if (menu) menu.classList.toggle('open');
-  }
 </script>
 </body>
 </html>
