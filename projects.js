@@ -99,6 +99,7 @@ const PROJECTS = {
     {
       key: 'true_romance',
       title: 'True Romance',
+      fetchPriority: 'high',
       description: 'An editorial styling project for Traditional Home Magazine. A richly layered home full of collected objects, moody finishes, and the kind of rooms that feel lived-in from the moment you enter.',
       credits: [
         { label: 'Photography', value: 'Werner Straube' },
