@@ -73,7 +73,7 @@ function navHTML(activePage) {
     'About': 'about.html',
     'Portfolio': 'portfolio.html',
     'Styling': 'styling.html',
-    'Press': 'press.html',
+    'Press': 'buzz.html',
     'Inspiration': 'inspiration.html',
     'Work With Us': 'work.html',
   };

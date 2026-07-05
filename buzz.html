@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buzz — Twig & Trove Interiors Dallas</title>
+  <meta name="description" content="Client testimonials and reviews for Kimberly Knight of Twig & Trove Interiors, alongside press and publications features in Luxe Interiors + Design, Traditional Home, Business of Home, Luxe Magazine, Milwaukee Magazine, and more." />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D44MFG1JCW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D44MFG1JCW');
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .wom-wrap {
+      padding: 64px 80px 80px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .wom-intro {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .wom-label {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .wom-headline {
+      font-family: var(--serif);
+      font-size: 30px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--charcoal);
+    }
+    .wom-subtitle {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+    .wom-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .wom-card {
+      border: 0.5px solid var(--rule);
+      background: var(--bg);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      transition: opacity 0.2s;
+    }
+    .wom-card.has-link:hover { opacity: 0.78; }
+    .wom-card.no-link { cursor: default; }
+    .wom-card-image {
+      width: 100%;
+      height: 0;
+      padding-bottom: 43.75%;
+      background-size: cover;
+      background-position: center;
+      display: block;
+    }
+    .wom-card-body {
+      padding: 24px 28px 26px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 230px;
+    }
+    .wom-pub {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .wom-title {
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--charcoal);
+      line-height: 1.3;
+    }
+    .wom-card.no-link .wom-title { color: var(--muted); }
+    .wom-quote-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .wom-quote {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--body-text);
+      margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .wom-quote.expanded {
+      -webkit-line-clamp: unset;
+      overflow: visible;
+    }
+    .wom-read-more {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      background: none;
+      border: none;
+      border-bottom: 0.5px solid var(--charcoal);
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 16px;
+      align-self: flex-start;
+      font-family: inherit;
+    }
+    .wom-read-more:hover { opacity: 0.6; }
+    .wom-attribution {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-top: auto;
+    }
+    @media (max-width: 1100px) {
+      .wom-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .wom-wrap { padding: 40px 24px 56px; }
+      .wom-grid { grid-template-columns: 1fr; }
+      .wom-headline { font-size: 24px; }
+    }
+  </style>
+  <link rel="canonical" href="https://www.twigandtrove.com/buzz.html" />
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-logo" href="index.html">
+    <img class="nav-logo-bird" src="images/ui/logo-bird.png" alt="Twig and Trove Interiors" />
+    <div class="nav-logo-text">
+      <div class="nav-logo-wordmark">Twig &amp; Trove Interiors</div>
+      <div class="nav-logo-sub">Kimberly Knight &nbsp;·&nbsp; Dallas</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li onclick="location.href='about.html'">About</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='portfolio.html'">Portfolio</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='styling.html'">Styling</li>
+    <li class="pipe">|</li>
+    <li class="active">Buzz</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='inspiration.html'">Inspiration</li>
+    <li class="pipe">|</li>
+    <li onclick="location.href='work.html'">Work With Us</li>
+  </ul>
+  <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-rule"></div>
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <a href="about.html">About</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="styling.html">Styling</a>
+  <a href="buzz.html">Buzz</a>
+  <a href="inspiration.html">Inspiration</a>
+  <a href="work.html">Work With Us</a>
+</div>
+
+<div class="page-wrap">
+  <h1 class="page-seo-title" style="position:absolute;left:-9999px;">Buzz — Word of Mouth: Client Testimonials, Reviews, Press &amp; Publications, Twig &amp; Trove Interiors Dallas</h1>
+  <div class="wom-wrap">
+    <div class="wom-intro">
+      <div class="wom-headline">Buzz</div>
+      <div class="wom-subtitle">Word of Mouth</div>
+    </div>
+    <div class="wom-grid" id="wom-grid"></div>
+  </div>
+  <div id="footer-wrap"></div>
+</div>
+
+<script src="projects.js"></script>
+<script src="nav.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Twig & Trove Interiors",
+  "url": "https://www.twigandtrove.com",
+  "founder": {
+    "@type": "Person",
+    "name": "Kimberly Knight",
+    "jobTitle": "Principal Designer"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": "7",
+    "bestRating": "5"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Susan" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Over the year and a half we worked with Kimberly Knight and her design firm Twig & Trove Interiors, we experienced nothing but exceptional, hands-on service. Her approach was genuinely collaborative, she always took the time to truly understand the look we were hoping to achieve before moving forward. Her attention to detail, beautifully curated presentation boards, and meticulous management of the financial side of the project, which my husband always appreciated, were all exemplary.",
+      "publisher": { "@type": "Organization", "name": "Google" }
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "David" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Wow! The work that Kimberly has done for us has been fantastic. She has a great balance between the aesthetic outcome and the personalities of the client. We feel truly fortunate to have worked with her and look forward to doing so again very soon.",
+      "publisher": { "@type": "Organization", "name": "Google" }
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Beth" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Kimberly is by far my favorite decorator I've worked with. She listens and really took the time to understand my taste. I am happy with all of the decisions we made together. She provided a perfect mix of new, elevated style and fun found items for us. I can't recommend her enough.",
+      "publisher": { "@type": "Organization", "name": "Google" }
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Natalie" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Kimberly is truly a gem in the industry and one of Dallas' best-kept secrets! Her impeccable style and architect-level attention to construction details set her apart. Not only does she excel in crafting stunning interiors, but she's also a pro at designing plans and guiding clients through renovations. Kimberly has a knack for transforming spaces with a fresh, unique touch that stands out. If you're looking for a home that doesn't blend in with the crowd, she's the one to call. Her eye for color, texture, and all things design is simply exceptional, and she's an absolute pleasure to work with every step of the way.",
+      "publisher": { "@type": "Organization", "name": "Google" }
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Paul" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "My wife and I had the pleasure and good fortune to work with Kimberly while building our home. She was instrumental in the entire process, helping provide input on the design of the home with the architect, as well as the complete furnishing. From furniture, procuring art at auction, leather wallpaper for the office, carpet, rugs, tiles, appliances, everything. We couldn't imagine we would have the home we do without Kimberly. She is the best!",
+      "publisher": { "@type": "Organization", "name": "Google" }
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Satchi" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Working with Kimberly at Twig & Trove Interiors was an exceptional experience. She has an incredible talent for elevating spaces and blending different styles into a cohesive, sophisticated design. Kimberly created a stunning study for me featuring Phillipsburg blue lacquered wood panels, a cork ceiling with gold leaf detailing, and beautiful silk brocade curtains from England, the room feels both timeless and unique. She also completely transformed an outdated, dark 1970s-era bathroom into a bright, modern retreat with custom cabinetry, a beautiful mirror surround, and an elegant shower with gorgeous tilework. Beyond her creativity and design expertise, Kimberly is knowledgeable, innovative, and truly enjoyable to work with. I highly recommend her to anyone looking for thoughtful, high-end interior design.",
+      "publisher": { "@type": "Organization", "name": "Google" }
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Kenny" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Kimberly Knight is the consummate professional. Timely, respectful, great listener. Great eye and imagination. I have done two homes with Twig and Trove. Awesome. I've been in the development business my entire professional career.",
+      "publisher": { "@type": "Organization", "name": "Yelp" }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Kimberly Knight",
+  "jobTitle": "Principal Designer",
+  "worksFor": {
+    "@type": "LocalBusiness",
+    "name": "Twig & Trove Interiors"
+  },
+  "subjectOf": [
+    {
+      "@type": "CreativeWork",
+      "name": "Gold List Honoree. Top Designers in the Midwest",
+      "publisher": { "@type": "Organization", "name": "Luxe Interiors + Design" },
+      "url": "https://luxesource.com/gold-list?year=2020"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Why This Wisconsin Designer Prefers to Focus on One Project at a Time",
+      "publisher": { "@type": "Organization", "name": "Business of Home" },
+      "url": "https://businessofhome.com/articles/why-this-wisconsin-designer-prefers-to-focus-on-one-project-at-a-time"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Vacation Vibes Infuse Modern Wisconsin Farmhouse",
+      "publisher": { "@type": "Organization", "name": "Luxe Magazine" },
+      "url": "https://luxedaily.luxesource.com/vacation-vibes-infuse-modern-wisconsin-farmhouse/"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Home and Design Gold Award. Décor, Living Room Traditional",
+      "publisher": { "@type": "Organization", "name": "Milwaukee Magazine" },
+      "url": "https://www.milwaukeemag.com/the-2023-home-design-awardees/"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Be Our Guest — Six Ways to Warm Up Your Home",
+      "publisher": { "@type": "Organization", "name": "MKE Lifestyle Magazine" },
+      "url": "https://www.mydigitalpublication.com/publication/?i=674507&article_id=3771894&view=articleBrowser&ver=html5"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "True Romance",
+      "publisher": { "@type": "Organization", "name": "Traditional Home Magazine" },
+      "url": "https://www.twigandtrove.com/landing.html?project=true_romance"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Carriage House",
+      "publisher": { "@type": "Organization", "name": "Traditional Home Magazine" },
+      "url": "https://www.twigandtrove.com/landing.html?project=carriage_house"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Feature Editorial",
+      "publisher": { "@type": "Organization", "name": "Cottage Style Magazine" }
+    }
+  ]
+}
+</script>
+<script>
+  const TESTIMONIALS = [
+    {
+      image: 'images/wordofmouth/natalie.webp',
+      quote: "Kimberly is truly a gem in the industry and one of Dallas' best-kept secrets! Her impeccable style and architect-level attention to construction details set her apart. Not only does she excel in crafting stunning interiors, but she's also a pro at designing plans and guiding clients through renovations. Kimberly has a knack for transforming spaces with a fresh, unique touch that stands out. If you're looking for a home that doesn't blend in with the crowd, she's the one to call. Her eye for color, texture, and all things design is simply exceptional, and she's an absolute pleasure to work with every step of the way.",
+      attribution: '— Natalie, Dallas, TX'
+    },
+    {
+      image: 'images/wordofmouth/david.webp',
+      quote: "Wow! The work that Kimberly has done for us has been fantastic. She has a great balance between the aesthetic outcome and the personalities of the client. We feel truly fortunate to have worked with her and look forward to doing so again very soon.",
+      attribution: '— David, River Hills, WI'
+    },
+    {
+      image: 'images/wordofmouth/beth.webp',
+      quote: "Kimberly is by far my favorite decorator I've worked with. She listens and really took the time to understand my taste. I am happy with all of the decisions we made together. She provided a perfect mix of new, elevated style and fun found items for us. I can't recommend her enough.",
+      attribution: '— Beth, Fox Point, WI'
+    },
+    {
+      image: 'images/wordofmouth/paul.webp',
+      quote: "My wife and I had the pleasure and good fortune to work with Kimberly while building our home. She was instrumental in the entire process, helping provide input on the design of the home with the architect, as well as the complete furnishing. From furniture, procuring art at auction, leather wallpaper for the office, carpet, rugs, tiles, appliances, everything. We couldn't imagine we would have the home we do without Kimberly. She is the best!",
+      attribution: '— Paul, Mequon, WI'
+    },
+    {
+      image: 'images/wordofmouth/satchi.webp',
+      quote: "Working with Kimberly at Twig & Trove Interiors was an exceptional experience. She has an incredible talent for elevating spaces and blending different styles into a cohesive, sophisticated design. Kimberly created a stunning study for me featuring Phillipsburg blue lacquered wood panels, a cork ceiling with gold leaf detailing, and beautiful silk brocade curtains from England — the room feels both timeless and unique. She also completely transformed an outdated, dark 1970s-era bathroom into a bright, modern retreat with custom cabinetry, a beautiful mirror surround, and an elegant shower with gorgeous tilework. Beyond her creativity and design expertise, Kimberly is knowledgeable, innovative, and truly enjoyable to work with. I highly recommend her to anyone looking for thoughtful, high-end interior design.",
+      attribution: '— Satchi, River Hills, WI'
+    },
+    {
+      image: 'images/wordofmouth/kenny.webp',
+      quote: "Kimberly Knight is the consummate professional. Timely, respectful, great listener. Great eye and imagination. I have done two homes with Twig and Trove.....Awesome. I've been in the development business my entire professional career.",
+      attribution: '— Kenny, Cashiers, NC'
+    },
+    {
+      image: 'images/wordofmouth/susan.webp',
+      quote: "Over the year and a half we worked with Kimberly Knight and her design firm Twig & Trove Interiors, we experienced nothing but exceptional, hands-on service. Her approach was genuinely collaborative, she always took the time to truly understand the look we were hoping to achieve before moving forward. Her attention to detail, beautifully curated presentation boards, and meticulous management of the financial side of the project, which my husband always appreciated, were all exemplary.",
+      attribution: '— Susan, River Hills, WI'
+    }
+  ];
+
+  const PRESS_IMAGES = {
+    'Luxe Interiors + Design|Gold List Honoree. Top Designers in the Midwest': 'images/wordofmouth/luxe_outdoor_kitchen.webp',
+    'Business of Home|Why This Wisconsin Designer Prefers to Focus on One Project at a Time': 'images/wordofmouth/business_of_home.webp',
+    'Luxe Magazine|Vacation Vibes Infuse Modern Wisconsin Farmhouse': 'images/wordofmouth/luxe_white_room.webp',
+    'Milwaukee Magazine|Home and Design Gold Award. Décor, Living Room Traditional': 'images/wordofmouth/mke_green_bedroom.webp',
+    'MKE Lifestyle Magazine|Be Our Guest — Six Ways to Warm Up Your Home': 'images/wordofmouth/mke_lifestyle.webp',
+    'Traditional Home Magazine|True Romance': 'images/wordofmouth/true_romance_desk.webp',
+    'Traditional Home Magazine|Carriage House': 'images/wordofmouth/carriage_house.webp',
+    'Cottage Style Magazine|Feature Editorial': 'images/wordofmouth/cottage_sink.webp'
+  };
+
+  // The real PRESS array (in projects.js, untouched) has url: null for a few
+  // entries. Two of these now have real portfolio landing pages on the live
+  // site; this override supplies those links for display purposes only.
+  const PRESS_URL_OVERRIDES = {
+    'Traditional Home Magazine|True Romance': 'https://www.twigandtrove.com/landing.html?project=true_romance',
+    'Traditional Home Magazine|Carriage House': 'https://www.twigandtrove.com/landing.html?project=carriage_house'
+  };
+
+  const grid = document.getElementById('wom-grid');
+
+  // Build press cards from the real PRESS array (untouched), then reorder
+  // for display only: less visually strong features move to the end.
+  const pressCardsRaw = PRESS.map(item => {
+    const key = `${item.pub}|${item.title}`;
+    const img = PRESS_IMAGES[key] || '';
+    const url = item.url || PRESS_URL_OVERRIDES[key] || null;
+    return { type: 'press', pub: item.pub, title: item.title, url: url, image: img };
+  });
+
+  const DISPLAY_LAST_PRESS = ['Business of Home|Why This Wisconsin Designer Prefers to Focus on One Project at a Time'];
+  const pressCards = [
+    ...pressCardsRaw.filter(c => !DISPLAY_LAST_PRESS.includes(`${c.pub}|${c.title}`)),
+    ...pressCardsRaw.filter(c => DISPLAY_LAST_PRESS.includes(`${c.pub}|${c.title}`))
+  ];
+
+  const testimonialCards = TESTIMONIALS.map(t => ({ type: 'testimonial', ...t }));
+
+  const combined = [];
+  const maxLen = Math.max(pressCards.length, testimonialCards.length);
+  for (let i = 0; i < maxLen; i++) {
+    if (pressCards[i]) combined.push(pressCards[i]);
+    if (testimonialCards[i]) combined.push(testimonialCards[i]);
+  }
+
+  combined.forEach((item, idx) => {
+    const hasLink = item.type === 'press' && item.url;
+    const el = hasLink ? document.createElement('a') : document.createElement('div');
+    el.className = 'wom-card' + (hasLink ? ' has-link' : ' no-link');
+    if (hasLink) { el.href = item.url; el.target = '_blank'; el.rel = 'noopener'; }
+
+    const imageDiv = document.createElement('div');
+    imageDiv.className = 'wom-card-image';
+    if (item.image) imageDiv.style.backgroundImage = `url('${item.image}')`;
+
+    const bodyDiv = document.createElement('div');
+    bodyDiv.className = 'wom-card-body';
+
+    if (item.type === 'press') {
+      bodyDiv.innerHTML = `
+        <div class="wom-pub">${item.pub}</div>
+        <div class="wom-title">${item.title}</div>
+      `;
+    } else {
+      const quoteId = `quote-${idx}`;
+      bodyDiv.innerHTML = `
+        <div class="wom-quote-wrap">
+          <p class="wom-quote" id="${quoteId}">"${item.quote}"</p>
+          <button type="button" class="wom-read-more" data-target="${quoteId}">Read more</button>
+        </div>
+        <div class="wom-attribution">${item.attribution}</div>
+      `;
+    }
+
+    el.appendChild(imageDiv);
+    el.appendChild(bodyDiv);
+    grid.appendChild(el);
+  });
+
+  document.querySelectorAll('.wom-read-more').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const quote = document.getElementById(btn.dataset.target);
+      const expanded = quote.classList.toggle('expanded');
+      btn.textContent = expanded ? 'Show less' : 'Read more';
+    });
+  });
+
+  document.getElementById('footer-wrap').innerHTML = footerHTML();
+
+  function toggleMobileMenu() {
+    const menu = document.getElementById('nav-mobile-menu');
+    if (menu) menu.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
