@@ -39,7 +39,8 @@
   </noscript>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap"></noscript>
-  
+
+  <link rel="preload" as="image" href="images/wordofmouth/natalie.webp" imagesrcset="images/wordofmouth/natalie.webp 480w, images/wordofmouth/natalie.webp 640w" imagesizes="(max-width: 600px) 412px, 558px" fetchpriority="high"/>
 
   <style>
     .wom-wrap {
@@ -207,17 +208,19 @@
   <a href="work.html">Work With Us</a>
 </div>
 
-<div class="page-wrap">
-  <h1 class="page-seo-title" style="position:absolute;left:-9999px;">Buzz — Word of Mouth: Client Testimonials, Reviews, Press &amp; Publications, Twig &amp; Trove Interiors Dallas</h1>
-  <div class="wom-wrap">
-    <div class="wom-intro">
-      <div class="wom-headline">Buzz</div>
-      <div class="wom-subtitle">Word of Mouth</div>
+<main id="main-content">
+  <div class="page-wrap">
+    <h1 class="page-seo-title" style="position:absolute;left:-9999px;">Buzz — Word of Mouth: Client Testimonials, Reviews, Press &amp; Publications, Twig &amp; Trove Interiors Dallas</h1>
+    <div class="wom-wrap">
+      <div class="wom-intro">
+        <div class="wom-headline">Buzz</div>
+        <div class="wom-subtitle">Word of Mouth</div>
+      </div>
+      <div class="wom-grid" id="wom-grid"></div>
     </div>
-    <div class="wom-grid" id="wom-grid"></div>
+    <div id="footer-wrap"></div>
   </div>
-  <div id="footer-wrap"></div>
-</div>
+</main>
 
 <script src="projects.js" defer></script>
 <script src="nav.js" defer></script>
@@ -357,6 +360,7 @@
     const TESTIMONIALS = [
       {
         image: 'images/wordofmouth/natalie.webp',
+        fetchpriority: 'high',
         quote: "Kimberly is truly a gem in the industry and one of Dallas' best-kept secrets! Her impeccable style and architect-level attention to construction details set her apart. Not only does she excel in crafting stunning interiors, but she's also a pro at designing plans and guiding clients through renovations. Kimberly has a knack for transforming spaces with a fresh, unique touch that stands out. If you're looking for a home that doesn't blend in with the crowd, she's the one to call. Her eye for color, texture, and all things design is simply exceptional, and she's an absolute pleasure to work with every step of the way.",
         attribution: '— Natalie, Dallas, TX'
       },
