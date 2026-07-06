@@ -174,7 +174,6 @@ const BLOG_POSTS = [
     title: "The Hunt for One of a Kind: A Vintage Lover's Guide to High Point Market",
     date: 'May 2026',
     category: 'Trade',
-    fetchPriority: 'high',
     imageCount: 15,
     customImages: [
       { src: 'images/blog/highpoint-02.webp', caption: 'Antique & Design Center' },
