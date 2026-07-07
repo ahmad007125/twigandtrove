@@ -27,6 +27,23 @@
     ["scroll", "mousemove", "click", "touchstart"].forEach(event => {
       window.addEventListener(event, loadAnalytics, { once: true, passive: true });
     });
+  
+    // Image Preload for better performance
+    const params = new URLSearchParams(location.search);
+    const key = params.get('post');
+    console.log(key);
+    if (key) {
+      document.write(`
+        <link
+          rel="preload"
+          as="image"
+          href="images/blog/${key}-01.webp"
+          imagesrcset="images/blog/${key}-01.webp 480w, images/blog/${key}-01.webp 640w"
+          imagesizes="(max-width:600px) 412px, 558px"
+          fetchpriority="high"
+        >
+      `);
+    }
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
