@@ -27,25 +27,8 @@
     ["scroll", "mousemove", "click", "touchstart"].forEach(event => {
       window.addEventListener(event, loadAnalytics, { once: true, passive: true });
     });
-  
-    // Image Preload for better performance
-    const params = new URLSearchParams(location.search);
-    const key = params.get('post');
-    console.log(key);
-    if (key) {
-      document.write(`
-        <link
-          rel="preload"
-          as="image"
-          href="images/blog/${key}-01.webp"
-          imagesrcset="images/blog/${key}-01.webp 480w, images/blog/${key}-01.webp 640w"
-          imagesizes="(max-width:600px) 412px, 558px"
-          fetchpriority="high"
-        >
-      `);
-    }
   </script>
-
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -56,16 +39,6 @@
   </noscript>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap"></noscript>
-
-  <!-- <link
-    id="blog-preload-image"
-    rel="preload"
-    as="image"
-    href=""
-    imagesrcset=""
-    imagesizes="(max-width: 600px) 412px, 558px"
-    fetchpriority="high"
-  /> -->
 
   <style>
     @media (max-width: 768px) {
@@ -124,6 +97,20 @@
 <script src="projects.js" defer></script>
 <script src="nav.js" defer></script>
 <script>
+
+  // Image Preload for better performance
+  const key = new URLSearchParams(location.search).get('post');
+  if (key) {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = `images/blog/${key}-01.webp`;
+    link.setAttribute('imagesrcset', `images/blog/${key}-01.webp 480w, images/blog/${key}-01.webp 640w`);
+    link.setAttribute('imagesizes', '(max-width:600px) 412px, 558px');
+    link.fetchPriority = 'high';
+    document.head.appendChild(link);
+  }
+
   window.addEventListener('load', function () {
     const params = new URLSearchParams(location.search);
     const key = params.get('post');
