@@ -29,24 +29,7 @@
     });
   </script>
 
-  <!-- FOr image preload -->
-  <script>
-    const key = new URLSearchParams(window.location.search).get('project');
-    const preload = document.createElement('link');
-    preload.rel = 'preload';
-    preload.as = 'image';
-    preload.href = `images/lodge/${key}-05.webp`;
-    preload.setAttribute(
-      'imagesrcset',
-      `images/lodge/${key}-05.webp 480w, images/lodge/${key}-05.webp 640w`
-    );
-    preload.setAttribute(
-      'imagesizes',
-      '(max-width: 600px) 412px, 558px'
-    );
-    preload.fetchPriority = 'high';
-    document.head.appendChild(preload);
-</script>
+  <link rel="preload" as="image" href="images/lodge/lodge-05.webp" imagesrcset="images/lodge/lodge-05.webp 480w, images/lodge/lodge-05.webp 640w" imagesizes="(max-width: 600px) 412px, 558px" fetchpriority="high"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
