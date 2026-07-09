@@ -171,43 +171,6 @@
     const menu = document.getElementById('nav-mobile-menu');
     if (menu) menu.classList.toggle('open');
   }
-
-  // Get project key from URL
-    const params = new URLSearchParams(location.search);
-    const key = params.get('project');
-
-    // Find project in either portfolio or styling
-    const allProjects = [...PROJECTS.portfolio, ...PROJECTS.styling];
-    const project = allProjects.find(p => p.key === key);
-    const isPortfolio = PROJECTS.portfolio.find(p => p.key === key);
-
-    if (!project) {
-      location.href = 'portfolio.html';
-    } else {
-      // Set page title and meta
-      document.getElementById('page-title').textContent = `${project.title} — Twig & Trove Interiors Dallas`;
-      document.getElementById('page-desc').setAttribute('content', project.description);
-
-      // Set active nav
-      if (isPortfolio) {
-        document.getElementById('nav-portfolio').classList.add('active');
-      } else {
-        document.getElementById('nav-styling').classList.add('active');
-      }
-
-      // Back link
-      document.getElementById('back-link').href = isPortfolio ? 'portfolio.html' : 'styling.html';
-
-      // Project info
-      document.getElementById('project-title').textContent = project.title;
-      document.getElementById('project-desc').textContent = project.description;
-      const creditsEl = document.getElementById('project-credits');
-      project.credits.forEach(c => {
-        const line = document.createElement('div');
-        line.innerHTML = `<strong style="text-transform:uppercase;letter-spacing:0.14em;">${c.label}:</strong> ${c.value}`;
-        creditsEl.appendChild(line);
-      });
-    }
   
 </script>
 </body>
