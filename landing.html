@@ -106,8 +106,8 @@
   </div>
 </main>
 
-<script src="projects.js" async></script>
-<script src="nav.js" async></script>
+<script src="projects.js" defer></script>
+<script src="nav.js" defer></script>
 <script>
   window.addEventListener('load', function () {
     // Get project key from URL
@@ -163,30 +163,6 @@
         div.appendChild(img);
         grid.appendChild(div);
       }
-
-      // Thumbnails
-      // const grid = document.getElementById('thumb-grid');
-      // for (let i = 1; i <= project.imageCount; i++) {
-      //   const div = document.createElement('div');
-      //   div.className = 'landing-thumb';
-      //   div.onclick = () => location.href = `gallery.html?project=${key}&start=${i}`;
-      //   const img = document.createElement('img');
-      //   img.src = projectImagePath(key, i);
-      //   const alt = (project.altTags && project.altTags[i - 1])
-      //     ? project.altTags[i - 1]
-      //     : `${project.title} — image ${i} by Kimberly Knight of Twig and Trove Interiors Dallas`;
-      //   img.alt = alt;
-      //   // First 3 images load immediately
-      //   if (i <= 3) {
-      //     img.loading = 'eager';
-      //     img.fetchPriority = 'high';
-      //   } else {
-      //     img.loading = 'lazy';
-      //   }
-      //   div.appendChild(img);
-      //   grid.appendChild(div);
-      // }
-
       document.getElementById('footer-wrap').innerHTML = footerHTML();
     }
   });
@@ -195,6 +171,43 @@
     const menu = document.getElementById('nav-mobile-menu');
     if (menu) menu.classList.toggle('open');
   }
+
+  // Get project key from URL
+    const params = new URLSearchParams(location.search);
+    const key = params.get('project');
+
+    // Find project in either portfolio or styling
+    const allProjects = [...PROJECTS.portfolio, ...PROJECTS.styling];
+    const project = allProjects.find(p => p.key === key);
+    const isPortfolio = PROJECTS.portfolio.find(p => p.key === key);
+
+    if (!project) {
+      location.href = 'portfolio.html';
+    } else {
+      // Set page title and meta
+      document.getElementById('page-title').textContent = `${project.title} — Twig & Trove Interiors Dallas`;
+      document.getElementById('page-desc').setAttribute('content', project.description);
+
+      // Set active nav
+      if (isPortfolio) {
+        document.getElementById('nav-portfolio').classList.add('active');
+      } else {
+        document.getElementById('nav-styling').classList.add('active');
+      }
+
+      // Back link
+      document.getElementById('back-link').href = isPortfolio ? 'portfolio.html' : 'styling.html';
+
+      // Project info
+      document.getElementById('project-title').textContent = project.title;
+      document.getElementById('project-desc').textContent = project.description;
+      const creditsEl = document.getElementById('project-credits');
+      project.credits.forEach(c => {
+        const line = document.createElement('div');
+        line.innerHTML = `<strong style="text-transform:uppercase;letter-spacing:0.14em;">${c.label}:</strong> ${c.value}`;
+        creditsEl.appendChild(line);
+      });
+    }
   
 </script>
 </body>
