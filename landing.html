@@ -29,8 +29,6 @@
     });
   </script>
 
-  <link rel="preload" as="image" href="images/lodge/lodge-05.webp" imagesrcset="images/lodge/lodge-05.webp 480w, images/lodge/lodge-05.webp 640w" imagesizes="(max-width: 600px) 412px, 558px" fetchpriority="high"/>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -171,6 +169,36 @@
     const menu = document.getElementById('nav-mobile-menu');
     if (menu) menu.classList.toggle('open');
   }
+
+
+  (function () {
+  const params = new URLSearchParams(window.location.search);
+  const project = params.get('project');
+  const start = parseInt(params.get('start') || '1', 10);
+  if (!project) return;
+  // Always preload the first image
+  const firstImage = `images/${project}/${project}-01.webp`;
+  const firstPreload = document.createElement('link');
+  firstPreload.rel = 'preload';
+  firstPreload.as = 'image';
+  firstPreload.href = firstImage;
+  firstPreload.fetchPriority = 'high';
+  document.head.appendChild(firstPreload);
+  // Preload target + previous 3 images
+  for (let i = start; i >= Math.max(1, start - 3); i--) {
+    const image = `images/${project}/${project}-${String(i).padStart(2, '0')}.webp`;
+    // Skip if it's the first image (already added)
+    if (i === 1) continue;
+    const preload = document.createElement('link');
+    preload.rel = 'preload';
+    preload.as = 'image';
+    preload.href = image;
+    if (i === start) {
+      preload.fetchPriority = 'high';
+    }
+    document.head.appendChild(preload);
+  }
+})();
   
 </script>
 </body>
