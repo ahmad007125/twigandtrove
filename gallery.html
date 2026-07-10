@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title id="page-title">Gallery — Twig & Trove Interiors Dallas</title>
+  <meta name="description" id="page-desc" content="Design journal by Kimberly Knight of Twig and Trove Interiors Dallas." />
 
   <!-- Google tag (gtag.js) -->
   <script>
@@ -122,6 +123,8 @@
       location.href = 'portfolio.html';
     } else {
       document.getElementById('page-title').textContent = `${project.title} — Twig & Trove Interiors`;
+      document.getElementById('page-desc').setAttribute('content', project.description);
+      // Set page title and meta
 
       // Active nav
       if (isPortfolio) {
