@@ -167,6 +167,8 @@
           ? project.altTags[i - 1]
           : `${project.title} — interior by Kimberly Knight of Twig and Trove Interiors Dallas`;
         img.alt = alt;
+        img.width = 300;
+        img.height = 200;
         // First 3 images: eager + high priority
         if (i <= 3) {
           img.loading = 'eager';
