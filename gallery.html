@@ -197,18 +197,38 @@
   });
 
 
+// (function () {
+//   const params = new URLSearchParams(window.location.search);
+//   const project = params.get('project');
+//   const start = params.get('start') || '1';
+//   if (!project) return;
+//   const image = `images/${project}/${project}-${String(start).padStart(2, '0')}.webp`;
+//   const preload = document.createElement('link');
+//   preload.rel = 'preload';
+//   preload.as = 'image';
+//   preload.href = image;
+//   preload.fetchPriority = 'high';
+//   document.head.appendChild(preload);
+// })();
+
+// Preload current image + previous 3 images
 (function () {
   const params = new URLSearchParams(window.location.search);
   const project = params.get('project');
-  const start = params.get('start') || '1';
+  const start = parseInt(params.get('start') || '1', 10);
   if (!project) return;
-  const image = `images/${project}/${project}-${String(start).padStart(2, '0')}.webp`;
-  const preload = document.createElement('link');
-  preload.rel = 'preload';
-  preload.as = 'image';
-  preload.href = image;
-  preload.fetchPriority = 'high';
-  document.head.appendChild(preload);
+  for (let i = start; i >= Math.max(1, start - 3); i--) {
+    const image = `images/${project}/${project}-${String(i).padStart(2, '0')}.webp`;
+    const preload = document.createElement('link');
+    preload.rel = 'preload';
+    preload.as = 'image';
+    preload.href = image;
+    // Give highest priority only to the current image
+    if (i === start) {
+      preload.fetchPriority = 'high';
+    }
+    document.head.appendChild(preload);
+  }
 })();
 
 </script>
