@@ -139,17 +139,38 @@
         project.credits.map(c => `<div><span style="text-transform:uppercase;letter-spacing:0.14em;font-size:9px;">${c.label}:</span> ${c.value}</div>`).join('');
 
       // Build gallery
+      // const track = document.getElementById('gallery-track');
+      // for (let i = 1; i <= project.imageCount; i++) {
+      //   const item = document.createElement('div');
+      //   item.className = 'hgallery-item';
+      //   const img = document.createElement('img');
+      //   img.src = projectImagePath(key, i);
+      //   const alt = (project.altTags && project.altTags[i-1])
+      //     ? project.altTags[i-1]
+      //     : `${project.title} — interior by Kimberly Knight of Twig and Trove Interiors Dallas`;
+      //   img.alt = alt;
+      //   if (i > 3) img.loading = 'lazy';
+      //   item.appendChild(img);
+      //   track.appendChild(item);
+      // }
+      // Build gallery
       const track = document.getElementById('gallery-track');
       for (let i = 1; i <= project.imageCount; i++) {
         const item = document.createElement('div');
         item.className = 'hgallery-item';
         const img = document.createElement('img');
         img.src = projectImagePath(key, i);
-        const alt = (project.altTags && project.altTags[i-1])
-          ? project.altTags[i-1]
+        const alt = (project.altTags && project.altTags[i - 1])
+          ? project.altTags[i - 1]
           : `${project.title} — interior by Kimberly Knight of Twig and Trove Interiors Dallas`;
         img.alt = alt;
-        if (i > 3) img.loading = 'lazy';
+        // First 3 images: eager + high priority
+        if (i <= 3) {
+          img.loading = 'eager';
+          img.fetchPriority = 'high';
+        } else {
+          img.loading = 'lazy';
+        }
         item.appendChild(img);
         track.appendChild(item);
       }
@@ -174,6 +195,22 @@
       if (menu) menu.classList.toggle('open');
     }
   });
+
+
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const project = params.get('project');
+  const start = params.get('start') || '1';
+  if (!project) return;
+  const image = `images/portfolio/${project}-${String(start).padStart(2, '0')}.webp`;
+  const preload = document.createElement('link');
+  preload.rel = 'preload';
+  preload.as = 'image';
+  preload.href = image;
+  preload.fetchPriority = 'high';
+  document.head.appendChild(preload);
+})();
+
 </script>
 </body>
 </html>
