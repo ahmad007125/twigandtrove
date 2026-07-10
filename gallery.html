@@ -6,15 +6,39 @@
   <title id="page-title">Gallery — Twig & Trove Interiors Dallas</title>
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D44MFG1JCW"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-D44MFG1JCW');
+    let loaded = false;
+    function loadAnalytics() {
+      if (loaded) return;
+      loaded = true;
+      const script = document.createElement("script");
+      script.src = "https://www.googletagmanager.com/gtag/js?id=G-D44MFG1JCW";
+      script.async = true;
+      document.head.appendChild(script);
+      script.onload = function () {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag("js", new Date());
+        gtag("config", "G-D44MFG1JCW");
+      };
+    }
+    ["scroll", "mousemove", "click", "touchstart"].forEach(event => {
+      window.addEventListener(event, loadAnalytics, { once: true, passive: true });
+    });
   </script>
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap">
+  </noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap"></noscript>
+
   <style>
     .gallery-wrap {
       padding-top: var(--nav-height);
@@ -24,6 +48,8 @@
       overflow: hidden;
     }
     .hgallery-track { flex: 1; min-height: 0; }
+
+    :root{--serif:'Cormorant Garamond',Georgia,serif;--sans:'Montserrat',Helvetica,sans-serif;--bg:#F5F3EE;--charcoal:#3A3228;--body-text:#3A3228;--warm-gray:#9A8F85;--muted:#9A8F85;--rule:#C8C0B4;--nav-height:80px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{font-size:16px;scroll-behavior:smooth}body{font-family:var(--sans);background:var(--bg);color:var(--body-text);min-height:100vh}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}p{line-height:1.9}.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-height);background:var(--bg);display:flex;align-items:center;justify-content:space-between;padding:0 48px;z-index:100;border-bottom:.5px solid var(--rule)}.nav-logo{display:flex;align-items:center;gap:14px;cursor:pointer;text-decoration:none}.nav-logo-bird{width:52px;height:52px;object-fit:contain}.nav-logo-wordmark{font-family:var(--serif);font-size:18px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--charcoal)}.nav-logo-sub{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:3px}.nav-links{display:flex;align-items:center;list-style:none;gap:0}.nav-links li{font-size:11.5px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--warm-gray);padding:0 16px;cursor:pointer;transition:color .2s;white-space:nowrap}.nav-links li:hover,.nav-links li.active{color:var(--charcoal)}.nav-links li.active{border-bottom:.5px solid var(--charcoal);padding-bottom:2px}.nav-links li.pipe{color:var(--rule);cursor:default;padding:0 4px}.nav-rule{position:fixed;top:var(--nav-height);left:0;right:0;height:.5px;background:var(--rule);z-index:99}.page-wrap{padding-top:var(--nav-height);min-height:100vh}.footer{border-top:.5px solid var(--rule);padding:28px 48px;display:flex;align-items:center;justify-content:space-between;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}.footer-social{display:flex;gap:20px}.footer-social a{color:var(--muted);text-decoration:none;transition:color .2s}.footer-social a:hover{color:var(--charcoal)}.page-seo-title{font-family:var(--sans);font-size:inherit;font-weight:inherit;letter-spacing:inherit;display:inline}.scroll-wrap{width:100%;overflow-x:auto;overflow-y:hidden;cursor:grab;scrollbar-width:none}.scroll-wrap::-webkit-scrollbar{display:none}.scroll-wrap:active{cursor:grabbing}.scroll-track{display:flex;height:calc(100vh - var(--nav-height))}.panel{flex:0 0 auto;position:relative;overflow:hidden;cursor:pointer}.panel-photo{width:100%;height:100%;background-size:cover;background-position:center;transition:transform .6s ease}.panel:hover .panel-photo{transform:scale(1.03)}.panel-label{position:absolute;bottom:28px;left:24px;font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.4)}.drag-hint{position:fixed;bottom:24px;left:48px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}.drag-hint::before{content:'';display:block;width:32px;height:.5px;background:var(--muted)}.about-wrap{display:flex;align-items:stretch;min-height:calc(100vh - var(--nav-height))}.about-photo-col{flex:0 0 400px;overflow:hidden}.about-photo-col img{width:100%;height:100%;object-fit:cover}.about-content-col{flex:1;padding:64px 72px 48px 64px;overflow-y:auto}.about-awards{display:flex;gap:40px;margin-bottom:48px}.about-award{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);line-height:1.8;border-left:.5px solid var(--rule);padding-left:16px}.about-name{font-family:var(--serif);font-size:36px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--charcoal);margin-bottom:6px}.about-title{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:36px}.about-bio p{font-size:14px;font-weight:300;line-height:1.9;color:var(--body-text);margin-bottom:20px}.about-cols{display:flex;gap:64px;margin-top:40px}.about-col-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);border-bottom:.5px solid var(--rule);padding-bottom:10px;margin-bottom:14px}.about-col-list{list-style:none;font-size:12px;font-weight:300;letter-spacing:.06em;line-height:2.2;color:var(--body-text)}.projects-wrap{padding:64px 48px 48px}.projects-header{margin-bottom:48px}.projects-title{font-family:var(--serif);font-size:11px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}.project-card{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:1}.project-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}.project-card:hover img{transform:scale(1.04)}.project-card-label{position:absolute;bottom:20px;left:20px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.5);pointer-events:none}.landing-wrap{display:flex;align-items:stretch;min-height:calc(100vh - var(--nav-height))}.landing-thumbs-col{flex:1;padding:40px 24px 40px 48px;overflow-y:auto}.landing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}.landing-thumb{aspect-ratio:1;overflow:hidden;cursor:pointer}.landing-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .3s}.landing-thumb:hover img{transform:scale(1.04)}.landing-info-col{width:320px;flex-shrink:0;padding:48px 48px 40px 32px;border-left:.5px solid var(--rule);display:flex;flex-direction:column;justify-content:space-between}.landing-rule{width:28px;height:.5px;background:var(--rule);margin-bottom:28px}.landing-project-title{font-family:var(--serif);font-size:24px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--charcoal);margin-bottom:20px}.landing-description{font-size:14px;font-weight:300;line-height:1.9;color:var(--body-text);margin-bottom:32px}.landing-credits{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);line-height:2.2}.landing-back{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);cursor:pointer;display:inline-block;border-bottom:.5px solid var(--rule);padding-bottom:2px;transition:color .2s}.landing-back:hover{color:var(--charcoal)}.gallery-wrap{padding-top:var(--nav-height);height:100vh;display:flex;flex-direction:column;overflow:hidden}.gallery-header{display:flex;align-items:flex-start;justify-content:space-between;padding:20px 48px 16px;flex-shrink:0}.gallery-meta{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);line-height:2}.gallery-drag-hint{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding-top:4px}.gallery-back{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);cursor:pointer;display:inline-block;border-bottom:.5px solid var(--rule);padding-bottom:2px;margin-top:10px;transition:color .2s}.gallery-back:hover{color:var(--charcoal)}.gallery-rule{height:.5px;background:var(--rule);flex-shrink:0}.hgallery-track{flex:1;display:flex;overflow-x:auto;overflow-y:hidden;cursor:grab;scrollbar-width:none;gap:3px;padding:3px}.hgallery-track::-webkit-scrollbar{display:none}.hgallery-track:active{cursor:grabbing}.hgallery-item{flex:0 0 auto;height:100%}.hgallery-item img{height:100%;width:auto;display:block;object-fit:cover}.press-wrap{padding:64px 48px 48px;max-width:900px}.press-item{display:flex;align-items:baseline;gap:40px;padding:28px 0;border-bottom:.5px solid var(--rule);cursor:pointer;transition:opacity .2s}.press-item:hover{opacity:.7}.press-pub{font-family:var(--serif);font-size:18px;font-weight:400;letter-spacing:.06em;color:var(--charcoal);flex:0 0 260px}.press-title{font-size:12px;font-weight:300;letter-spacing:.08em;color:var(--body-text);flex:1}.press-date{font-size:10px;letter-spacing:.14em;color:var(--muted);flex:0 0 80px;text-align:right}.inspiration-wrap{padding:64px 48px 48px}.inspiration-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px 24px;margin-top:32px}.blog-card{cursor:pointer}.blog-card-img{width:100%;aspect-ratio:4/3;overflow:hidden;margin-bottom:16px}.blog-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}.blog-card:hover .blog-card-img img{transform:scale(1.04)}.blog-card-date{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}.blog-card-title{font-family:var(--serif);font-size:20px;font-weight:400;letter-spacing:.06em;color:var(--charcoal);line-height:1.3}.blog-post-wrap{max-width:760px;padding:64px 48px 80px}.blog-post-back{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);cursor:pointer;display:inline-block;border-bottom:.5px solid var(--rule);padding-bottom:2px;margin-bottom:48px;transition:color .2s}.blog-post-back:hover{color:var(--charcoal)}.blog-post-category{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}.blog-post-title{font-family:var(--serif);font-size:36px;font-weight:400;letter-spacing:.08em;color:var(--charcoal);line-height:1.2;margin-bottom:10px}.blog-post-date{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:48px}.blog-post-body{font-size:15px;font-weight:300;line-height:1.9;color:var(--body-text)}.blog-post-body p{margin-bottom:24px}.blog-post-body img{width:100%;margin:32px 0}.work-wrap{display:flex;align-items:stretch;min-height:calc(100vh - var(--nav-height))}.work-content-col{flex:1;padding:80px 72px 64px 80px;display:flex;flex-direction:column;justify-content:center}.work-headline{font-family:var(--serif);font-size:42px;font-weight:300;letter-spacing:.04em;color:var(--charcoal);line-height:1.25;margin-bottom:32px}.work-intro{font-size:14px;font-weight:300;line-height:1.9;color:var(--body-text);max-width:480px;margin-bottom:48px}.work-contact-item{margin-bottom:20px}.work-contact-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}.work-contact-value{font-size:14px;font-weight:300;color:var(--charcoal)}.work-contact-value a{transition:opacity .2s}.work-contact-value a:hover{opacity:.6}.work-locations{margin-top:48px}.work-locations-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}.work-locations-list{list-style:none;font-size:12px;font-weight:300;letter-spacing:.04em;line-height:2.2;color:var(--body-text);columns:2}.work-photo-col{flex:0 0 45%;overflow:hidden}.work-photo-col img{width:100%;height:100%;object-fit:cover}.section-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:24px;height:16px;cursor:pointer;padding:0;background:none;border:none;z-index:200}.nav-hamburger span{display:block;width:100%;height:1px;background:var(--charcoal);transition:all .3s}.nav-mobile-menu{display:none;position:fixed;top:var(--nav-height);left:0;right:0;background:var(--bg);border-bottom:.5px solid var(--rule);padding:24px 32px;z-index:200;flex-direction:column;gap:0;box-shadow:0 4px 20px rgba(0,0,0,.08)}.nav-mobile-menu.open{display:flex}.nav-mobile-menu a{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--warm-gray);text-decoration:none;padding:14px 0;border-bottom:.5px solid var(--rule);transition:color .2s}.nav-mobile-menu a:last-child{border-bottom:none}.nav-mobile-menu a:hover,.nav-mobile-menu a.active{color:var(--charcoal)}@media (max-width:768px){:root{--nav-height:64px}.nav{padding:0 20px}.nav-logo-bird{width:38px;height:38px}.nav-logo-wordmark{font-size:13px;letter-spacing:.14em}.nav-logo-sub{display:none}.nav-links{display:none}.nav-rule{display:none}.nav-hamburger{display:flex}.home-track{flex-direction:column!important;overflow-x:hidden!important;overflow-y:auto!important;height:auto!important}.home-panel{width:100%!important;height:60vw!important;min-height:260px}.projects-track{flex-direction:column!important;overflow-x:hidden!important;overflow-y:auto!important;height:auto!important}.project-panel{width:100%!important;height:60vw!important;min-height:260px;flex:none!important}.landing-wrap{flex-direction:column}.landing-info-col{width:100%;border-left:none;border-top:.5px solid var(--rule)}.about-wrap{flex-direction:column}.about-photo-col{flex:0 0 280px}.about-content-col{padding:32px 24px}.about-cols{flex-direction:column;gap:24px}.work-wrap{flex-direction:column}.work-photo-col{flex:0 0 260px}.work-content-col{padding:40px 24px 32px}.press-grid{grid-template-columns:1fr}.inspiration-grid{grid-template-columns:1fr}.footer{padding:20px 24px;flex-direction:column;gap:12px;text-align:center}.hgallery-track{flex-direction:column!important;overflow-x:hidden!important;overflow-y:auto!important;height:auto!important}.hgallery-item{width:100%!important;height:auto!important}.hgallery-item img{width:100%!important;height:auto!important}}@media (max-width:900px) and (min-width:769px){.nav{padding:0 24px}.nav-logo-wordmark{font-size:14px}.nav-links li{padding:0 8px;font-size:10px}.landing-wrap{flex-direction:column}.landing-info-col{width:100%;border-left:none;border-top:.5px solid var(--rule)}.about-wrap{flex-direction:column}.about-photo-col{flex:0 0 300px}.work-wrap{flex-direction:column}.work-photo-col{flex:0 0 300px}.footer{padding:20px 24px;flex-direction:column;gap:12px;text-align:center}}
   </style>
 </head>
 <body>
@@ -62,88 +88,92 @@
   <a href="work.html">Work With Us</a>
 </div>
 
-<div class="gallery-wrap">
-  <div class="gallery-header">
-    <div>
-      <div class="gallery-meta" id="gallery-meta"></div>
-      <a class="gallery-back" id="back-link" href="#">&#8592; Back</a>
+<main id="main-content">
+  <div class="gallery-wrap">
+    <div class="gallery-header">
+      <div>
+        <div class="gallery-meta" id="gallery-meta"></div>
+        <a class="gallery-back" id="back-link" href="#">&#8592; Back</a>
+      </div>
+      <div class="gallery-drag-hint">Drag to explore &rarr;</div>
     </div>
-    <div class="gallery-drag-hint">Drag to explore &rarr;</div>
+    <div class="gallery-rule"></div>
+    <div class="hgallery-track" id="gallery-track"></div>
+    <div style="flex-shrink:0;padding:14px 48px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;border-top:0.5px solid var(--rule);">
+      <span style="display:block;width:32px;height:0.5px;background:var(--muted);"></span>Drag to explore &nbsp;&rarr;
+    </div>
+    <div id="footer-wrap" style="flex-shrink:0;"></div>
   </div>
-  <div class="gallery-rule"></div>
-  <div class="hgallery-track" id="gallery-track"></div>
-  <div style="flex-shrink:0;padding:14px 48px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;border-top:0.5px solid var(--rule);">
-    <span style="display:block;width:32px;height:0.5px;background:var(--muted);"></span>Drag to explore &nbsp;&rarr;
-  </div>
-  <div id="footer-wrap" style="flex-shrink:0;"></div>
-</div>
+</main>
 
-<script src="projects.js"></script>
-<script src="nav.js"></script>
+<script src="projects.js" defer></script>
+<script src="nav.js" defer></script>
 <script>
-  const params = new URLSearchParams(location.search);
-  const key = params.get('project');
-  const startIdx = parseInt(params.get('start') || '1') - 1;
+  window.addEventListener('load', function () {
+    const params = new URLSearchParams(location.search);
+    const key = params.get('project');
+    const startIdx = parseInt(params.get('start') || '1') - 1;
 
-  const allProjects = [...PROJECTS.portfolio, ...PROJECTS.styling];
-  const project = allProjects.find(p => p.key === key);
-  const isPortfolio = PROJECTS.portfolio.find(p => p.key === key);
+    const allProjects = [...PROJECTS.portfolio, ...PROJECTS.styling];
+    const project = allProjects.find(p => p.key === key);
+    const isPortfolio = PROJECTS.portfolio.find(p => p.key === key);
 
-  if (!project) {
-    location.href = 'portfolio.html';
-  } else {
-    document.getElementById('page-title').textContent = `${project.title} — Twig & Trove Interiors`;
-
-    // Active nav
-    if (isPortfolio) {
-      document.getElementById('nav-portfolio').classList.add('active');
+    if (!project) {
+      location.href = 'portfolio.html';
     } else {
-      document.getElementById('nav-styling').classList.add('active');
+      document.getElementById('page-title').textContent = `${project.title} — Twig & Trove Interiors`;
+
+      // Active nav
+      if (isPortfolio) {
+        document.getElementById('nav-portfolio').classList.add('active');
+      } else {
+        document.getElementById('nav-styling').classList.add('active');
+      }
+
+      // Back link
+      document.getElementById('back-link').href = `landing.html?project=${key}`;
+
+      // Credits in header
+      const meta = document.getElementById('gallery-meta');
+      meta.innerHTML = `<div style="font-family:var(--serif);font-size:22px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--charcoal);margin-bottom:10px;">${project.title}</div>` +
+        project.credits.map(c => `<div><span style="text-transform:uppercase;letter-spacing:0.14em;font-size:9px;">${c.label}:</span> ${c.value}</div>`).join('');
+
+      // Build gallery
+      const track = document.getElementById('gallery-track');
+      for (let i = 1; i <= project.imageCount; i++) {
+        const item = document.createElement('div');
+        item.className = 'hgallery-item';
+        const img = document.createElement('img');
+        img.src = projectImagePath(key, i);
+        const alt = (project.altTags && project.altTags[i-1])
+          ? project.altTags[i-1]
+          : `${project.title} — interior by Kimberly Knight of Twig and Trove Interiors Dallas`;
+        img.alt = alt;
+        if (i > 3) img.loading = 'lazy';
+        item.appendChild(img);
+        track.appendChild(item);
+      }
+
+      // Drag scroll
+      initDragScroll(track);
+      document.getElementById('footer-wrap').innerHTML = footerHTML();
+
+      // Scroll to start index
+      if (startIdx > 0) {
+        setTimeout(() => {
+          const items = track.querySelectorAll('.hgallery-item');
+          if (items[startIdx]) {
+            items[startIdx].scrollIntoView({ behavior: 'instant', inline: 'start' });
+          }
+        }, 100);
+      }
     }
 
-    // Back link
-    document.getElementById('back-link').href = `landing.html?project=${key}`;
-
-    // Credits in header
-    const meta = document.getElementById('gallery-meta');
-    meta.innerHTML = `<div style="font-family:var(--serif);font-size:22px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--charcoal);margin-bottom:10px;">${project.title}</div>` +
-      project.credits.map(c => `<div><span style="text-transform:uppercase;letter-spacing:0.14em;font-size:9px;">${c.label}:</span> ${c.value}</div>`).join('');
-
-    // Build gallery
-    const track = document.getElementById('gallery-track');
-    for (let i = 1; i <= project.imageCount; i++) {
-      const item = document.createElement('div');
-      item.className = 'hgallery-item';
-      const img = document.createElement('img');
-      img.src = projectImagePath(key, i);
-      const alt = (project.altTags && project.altTags[i-1])
-        ? project.altTags[i-1]
-        : `${project.title} — interior by Kimberly Knight of Twig and Trove Interiors Dallas`;
-      img.alt = alt;
-      if (i > 3) img.loading = 'lazy';
-      item.appendChild(img);
-      track.appendChild(item);
+    function toggleMobileMenu() {
+      const menu = document.getElementById('nav-mobile-menu');
+      if (menu) menu.classList.toggle('open');
     }
-
-    // Drag scroll
-    initDragScroll(track);
-    document.getElementById('footer-wrap').innerHTML = footerHTML();
-
-    // Scroll to start index
-    if (startIdx > 0) {
-      setTimeout(() => {
-        const items = track.querySelectorAll('.hgallery-item');
-        if (items[startIdx]) {
-          items[startIdx].scrollIntoView({ behavior: 'instant', inline: 'start' });
-        }
-      }, 100);
-    }
-  }
-
-  function toggleMobileMenu() {
-    const menu = document.getElementById('nav-mobile-menu');
-    if (menu) menu.classList.toggle('open');
-  }
+  });
 </script>
 </body>
 </html>
