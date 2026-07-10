@@ -172,7 +172,7 @@
           ? project.altTags[i - 1]
           : `${project.title} — image ${i} by Kimberly Knight of Twig and Trove Interiors Dallas`;
         img.alt = alt;
-        if (i === 1) {
+        if (i === 5) {
           img.fetchPriority = 'high';
           img.loading = 'eager';
         } else {
@@ -181,7 +181,7 @@
         div.appendChild(img);
         grid.appendChild(div);
       }
-      
+
       document.getElementById('footer-wrap').innerHTML = footerHTML();
     }
   });
