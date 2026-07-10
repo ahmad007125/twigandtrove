@@ -202,7 +202,7 @@
   const project = params.get('project');
   const start = params.get('start') || '1';
   if (!project) return;
-  const image = `images/portfolio/${project}-${String(start).padStart(2, '0')}.webp`;
+  const image = `images/${project}/${project}-${String(start).padStart(2, '0')}.webp`;
   const preload = document.createElement('link');
   preload.rel = 'preload';
   preload.as = 'image';
