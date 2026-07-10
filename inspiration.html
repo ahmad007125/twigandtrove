@@ -134,16 +134,15 @@
         <div class="blog-card-date">${post.category} &nbsp;&middot;&nbsp; ${post.date}</div>
         <div class="blog-card-title">${post.title}</div>
       `;
-
       grid.appendChild(card);
     });
     document.getElementById('footer-wrap').innerHTML = footerHTML();
-
-    function toggleMobileMenu() {
-      const menu = document.getElementById('nav-mobile-menu');
-      if (menu) menu.classList.toggle('open');
-    }
   });
+
+  function toggleMobileMenu() {
+    const menu = document.getElementById('nav-mobile-menu');
+    if (menu) menu.classList.toggle('open');
+  }
 </script>
 </body>
 </html>

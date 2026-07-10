@@ -137,7 +137,6 @@
       // const normImages = images.map(img =>
       //   typeof img === 'string' ? { src: img, caption: '' } : img
       // );
-
       // // Helper to render an image with optional caption
       // function imgHTML(imgObj, altText) {
       //   const cap = imgObj.caption
@@ -205,12 +204,42 @@
       content.innerHTML = html;
       document.getElementById('footer-wrap').innerHTML = footerHTML();
     }
-
-    function toggleMobileMenu() {
-      const menu = document.getElementById('nav-mobile-menu');
-      if (menu) menu.classList.toggle('open');
-    }
   });
+
+  function toggleMobileMenu() {
+    const menu = document.getElementById('nav-mobile-menu');
+    if (menu) menu.classList.toggle('open');
+  }
+
+//   (function () {
+//   const params = new URLSearchParams(window.location.search);
+//   const project = params.get('project');
+//   const start = parseInt(params.get('start') || '1', 10);
+//   if (!project) return;
+//   // Always preload the first image
+//   const firstImage = `images/${project}/${project}-01.webp`;
+//   const firstPreload = document.createElement('link');
+//   firstPreload.rel = 'preload';
+//   firstPreload.as = 'image';
+//   firstPreload.href = firstImage;
+//   firstPreload.fetchPriority = 'high';
+//   document.head.appendChild(firstPreload);
+//   // Preload target + previous 3 images
+//   for (let i = start; i >= Math.max(1, start - 3); i--) {
+//     const image = `images/${project}/${project}-${String(i).padStart(2, '0')}.webp`;
+//     // Skip if it's the first image (already added)
+//     if (i === 1) continue;
+//     const preload = document.createElement('link');
+//     preload.rel = 'preload';
+//     preload.as = 'image';
+//     preload.href = image;
+//     if (i === start) {
+//       preload.fetchPriority = 'high';
+//     }
+//     document.head.appendChild(preload);
+//   }
+// })();
+
 </script>
 </body>
 </html>
