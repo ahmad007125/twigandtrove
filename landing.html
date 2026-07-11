@@ -223,9 +223,13 @@
       //   grid.appendChild(div);
       // }
 
+
+      
       const grid = document.getElementById("thumb-grid");
 
-// Create placeholders immediately
+const images = [];
+
+// Create skeletons first
 for (let i = 1; i <= project.imageCount; i++) {
   const div = document.createElement("div");
   div.className = "landing-thumb";
@@ -237,33 +241,49 @@ for (let i = 1; i <= project.imageCount; i++) {
   skeleton.className = "thumb-skeleton";
   div.appendChild(skeleton);
 
-  // Image (don't set src yet)
+  // Image
   const img = document.createElement("img");
-  const alt =
-    project.altTags && project.altTags[i - 1]
-      ? project.altTags[i - 1]
-      : `${project.title} — image ${i} by Kimberly Knight of Twig and Trove Interiors Dallas`;
-  img.alt = alt;
+
+  img.alt =
+    project.altTags?.[i - 1] ||
+    `${project.title} — image ${i} by Kimberly Knight of Twig and Trove Interiors Dallas`;
+
+  // Don't use lazy when setting src later
+  img.loading = "eager";
+
   if (i === 5) {
     img.fetchPriority = "high";
-    img.loading = "eager";
-  } else {
-    img.loading = "lazy";
   }
+
+  img.style.opacity = "0";
+  img.style.transition = "opacity .35s ease";
+
   img.onload = () => {
-    div.classList.add("loaded");
+    skeleton.remove();
+    img.style.opacity = "1";
   };
+
+  img.onerror = () => {
+    console.error("Failed to load:", img.dataset.src);
+  };
+
+  // Save the URL for later
+  img.dataset.src = projectImagePath(key, i);
+
   div.appendChild(img);
   grid.appendChild(div);
-  // Save image path
-  img.dataset.src = projectImagePath(key, i);
+
+  images.push(img);
 }
-// Wait until EVERYTHING is loaded
+
+// Wait until EVERYTHING has loaded
 window.addEventListener("load", () => {
-  document.querySelectorAll("#thumb-grid img").forEach((img) => {
+  images.forEach((img) => {
     img.src = img.dataset.src;
   });
 });
+
+
 
       document.getElementById('footer-wrap').innerHTML = footerHTML();
     }
