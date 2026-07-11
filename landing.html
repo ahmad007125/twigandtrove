@@ -171,50 +171,44 @@
       // });
 
       // Elements
-const titleEl = document.getElementById("project-title");
-const descEl = document.getElementById("project-desc");
-const creditsEl = document.getElementById("project-credits");
+      const titleEl = document.getElementById("project-title");
+      const descEl = document.getElementById("project-desc");
+      const creditsEl = document.getElementById("project-credits");
+      // Show simple shimmer
+      function showProjectShimmer() {
+        titleEl.innerHTML = `<div class="shimmer" style="width:220px;height:36px;"></div>`;
+        descEl.innerHTML = `
+          <div class="shimmer" style="width:100%;height:16px;margin-bottom:8px;"></div>
+          <div class="shimmer" style="width:85%;height:16px;"></div>
+        `;
+        creditsEl.innerHTML = `
+          <div class="shimmer" style="width:180px;height:16px;margin-bottom:8px;"></div>
+          <div class="shimmer" style="width:220px;height:16px;margin-bottom:8px;"></div>
+          <div class="shimmer" style="width:160px;height:16px;"></div>
+        `;
+      }
+      // Render actual content
+      function renderProjectInfo(project) {
+        titleEl.textContent = project.title;
+        descEl.textContent = project.description;
 
-// Show simple shimmer
-function showProjectShimmer() {
-  titleEl.innerHTML = `<div class="shimmer" style="width:220px;height:36px;"></div>`;
+        creditsEl.innerHTML = "";
 
-  descEl.innerHTML = `
-    <div class="shimmer" style="width:100%;height:16px;margin-bottom:8px;"></div>
-    <div class="shimmer" style="width:85%;height:16px;"></div>
-  `;
-
-  creditsEl.innerHTML = `
-    <div class="shimmer" style="width:180px;height:16px;margin-bottom:8px;"></div>
-    <div class="shimmer" style="width:220px;height:16px;margin-bottom:8px;"></div>
-    <div class="shimmer" style="width:160px;height:16px;"></div>
-  `;
-}
-
-// Render actual content
-function renderProjectInfo(project) {
-  titleEl.textContent = project.title;
-  descEl.textContent = project.description;
-
-  creditsEl.innerHTML = "";
-
-  project.credits.forEach(c => {
-    const line = document.createElement("div");
-    line.innerHTML = `
-      <strong style="text-transform:uppercase;letter-spacing:0.14em;">
-        ${c.label}:
-      </strong> ${c.value}
-    `;
-    creditsEl.appendChild(line);
-  });
-}
-
-// Usage
-showProjectShimmer();
-
-setTimeout(() => {
-  renderProjectInfo(project);
-}, 1000);
+        project.credits.forEach(c => {
+          const line = document.createElement("div");
+          line.innerHTML = `
+            <strong style="text-transform:uppercase;letter-spacing:0.14em;">
+              ${c.label}:
+            </strong> ${c.value}
+          `;
+          creditsEl.appendChild(line);
+        });
+      }
+      // Usage
+      showProjectShimmer();
+      setTimeout(() => {
+        renderProjectInfo(project);
+      }, 1000);
 
 
     
