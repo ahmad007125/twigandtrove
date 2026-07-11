@@ -162,54 +162,54 @@
       document.getElementById('back-link').href = isPortfolio ? 'portfolio.html' : 'styling.html';
 
       // Project info
-      document.getElementById('project-title').textContent = project.title;
-      document.getElementById('project-desc').textContent = project.description;
-      const creditsEl = document.getElementById('project-credits');
-      project.credits.forEach(c => {
-        const line = document.createElement('div');
-        line.innerHTML = `<strong style="text-transform:uppercase;letter-spacing:0.14em;">${c.label}:</strong> ${c.value}`;
-        creditsEl.appendChild(line);
-      });
+      // document.getElementById('project-title').textContent = project.title;
+      // document.getElementById('project-desc').textContent = project.description;
+      // const creditsEl = document.getElementById('project-credits');
+      // project.credits.forEach(c => {
+      //   const line = document.createElement('div');
+      //   line.innerHTML = `<strong style="text-transform:uppercase;letter-spacing:0.14em;">${c.label}:</strong> ${c.value}`;
+      //   creditsEl.appendChild(line);
+      // });
 
       // Elements
-      // const titleEl = document.getElementById("project-title");
-      // const descEl = document.getElementById("project-desc");
-      // const creditsEl = document.getElementById("project-credits");
-      // // Show simple shimmer
-      // function showProjectShimmer() {
-      //   titleEl.innerHTML = `<div class="shimmer" style="width:220px;height:36px;"></div>`;
-      //   descEl.innerHTML = `
-      //     <div class="shimmer" style="width:100%;height:16px;margin-bottom:8px;"></div>
-      //     <div class="shimmer" style="width:85%;height:16px;"></div>
-      //   `;
-      //   creditsEl.innerHTML = `
-      //     <div class="shimmer" style="width:180px;height:16px;margin-bottom:8px;"></div>
-      //     <div class="shimmer" style="width:220px;height:16px;margin-bottom:8px;"></div>
-      //     <div class="shimmer" style="width:160px;height:16px;"></div>
-      //   `;
-      // }
-      // // Render actual content
-      // function renderProjectInfo(project) {
-      //   titleEl.textContent = project.title;
-      //   descEl.textContent = project.description;
+      const titleEl = document.getElementById("project-title");
+      const descEl = document.getElementById("project-desc");
+      const creditsEl = document.getElementById("project-credits");
+      // Show simple shimmer
+      function showProjectShimmer() {
+        titleEl.innerHTML = `<div class="shimmer" style="width:220px;height:36px;"></div>`;
+        descEl.innerHTML = `
+          <div class="shimmer" style="width:100%;height:16px;margin-bottom:8px;"></div>
+          <div class="shimmer" style="width:85%;height:16px;"></div>
+        `;
+        creditsEl.innerHTML = `
+          <div class="shimmer" style="width:180px;height:16px;margin-bottom:8px;"></div>
+          <div class="shimmer" style="width:220px;height:16px;margin-bottom:8px;"></div>
+          <div class="shimmer" style="width:160px;height:16px;"></div>
+        `;
+      }
+      // Render actual content
+      function renderProjectInfo(project) {
+        titleEl.textContent = project.title;
+        descEl.textContent = project.description;
 
-      //   creditsEl.innerHTML = "";
+        creditsEl.innerHTML = "";
 
-      //   project.credits.forEach(c => {
-      //     const line = document.createElement("div");
-      //     line.innerHTML = `
-      //       <strong style="text-transform:uppercase;letter-spacing:0.14em;">
-      //         ${c.label}:
-      //       </strong> ${c.value}
-      //     `;
-      //     creditsEl.appendChild(line);
-      //   });
-      // }
-      // // Usage
-      // showProjectShimmer();
-      // setTimeout(() => {
-      //   renderProjectInfo(project);
-      // }, 500);
+        project.credits.forEach(c => {
+          const line = document.createElement("div");
+          line.innerHTML = `
+            <strong style="text-transform:uppercase;letter-spacing:0.14em;">
+              ${c.label}:
+            </strong> ${c.value}
+          `;
+          creditsEl.appendChild(line);
+        });
+      }
+      // Usage
+      showProjectShimmer();
+      setTimeout(() => {
+        renderProjectInfo(project);
+      }, 500);
 
 
     
