@@ -236,27 +236,30 @@
 
 
 
-      document.getElementById('footer-wrap').innerHTML = footerHTML();
     }
-  // });
+    // });
+    
+    function toggleMobileMenu() {
+      const menu = document.getElementById('nav-mobile-menu');
+      if (menu) menu.classList.toggle('open');
+    }
+    
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const project = params.get('project');
+      if (!project) return;
+      const preload = document.createElement('link');
+      preload.rel = 'preload';
+      preload.as = 'image';
+      preload.href = `images/${project}/${project}-05.webp`;
+      preload.fetchPriority = 'high';
+      document.head.appendChild(preload);
+    })();
+    
+    window.addEventListener('load', function () {
+    document.getElementById('footer-wrap').innerHTML = footerHTML();
+    })
 
-  function toggleMobileMenu() {
-    const menu = document.getElementById('nav-mobile-menu');
-    if (menu) menu.classList.toggle('open');
-  }
-
-  (function () {
-    const params = new URLSearchParams(window.location.search);
-    const project = params.get('project');
-    if (!project) return;
-    const preload = document.createElement('link');
-    preload.rel = 'preload';
-    preload.as = 'image';
-    preload.href = `images/${project}/${project}-05.webp`;
-    preload.fetchPriority = 'high';
-    document.head.appendChild(preload);
-  })();
-  
-</script>
+  </script>
 </body>
 </html>
