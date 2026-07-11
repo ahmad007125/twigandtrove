@@ -226,10 +226,17 @@
 
       
       const grid = document.getElementById("thumb-grid");
-
 const images = [];
 
-// Create skeletons first
+function loadImages() {
+  images.forEach((img) => {
+    if (!img.src) {
+      img.src = img.dataset.src;
+    }
+  });
+}
+
+// Create all thumbnails with skeletons
 for (let i = 1; i <= project.imageCount; i++) {
   const div = document.createElement("div");
   div.className = "landing-thumb";
@@ -248,15 +255,17 @@ for (let i = 1; i <= project.imageCount; i++) {
     project.altTags?.[i - 1] ||
     `${project.title} — image ${i} by Kimberly Knight of Twig and Trove Interiors Dallas`;
 
-  // Don't use lazy when setting src later
-  img.loading = "eager";
+  img.loading = i === 5 ? "eager" : "lazy";
 
   if (i === 5) {
     img.fetchPriority = "high";
   }
 
   img.style.opacity = "0";
-  img.style.transition = "opacity .35s ease";
+  img.style.transition = "opacity 0.35s ease";
+
+  // Save image path
+  img.dataset.src = projectImagePath(key, i);
 
   img.onload = () => {
     skeleton.remove();
@@ -265,23 +274,20 @@ for (let i = 1; i <= project.imageCount; i++) {
 
   img.onerror = () => {
     console.error("Failed to load:", img.dataset.src);
+    skeleton.remove();
   };
-
-  // Save the URL for later
-  img.dataset.src = projectImagePath(key, i);
 
   div.appendChild(img);
   grid.appendChild(div);
 
   images.push(img);
 }
-
-// Wait until EVERYTHING has loaded
-window.addEventListener("load", () => {
-  images.forEach((img) => {
-    img.src = img.dataset.src;
-  });
-});
+// Load images only after the entire page has finished loading
+if (document.readyState === "complete") {
+  loadImages();
+} else {
+  window.addEventListener("load", loadImages, { once: true });
+}
 
 
 
@@ -294,17 +300,17 @@ window.addEventListener("load", () => {
     if (menu) menu.classList.toggle('open');
   }
 
-  (function () {
-    const params = new URLSearchParams(window.location.search);
-    const project = params.get('project');
-    if (!project) return;
-    const preload = document.createElement('link');
-    preload.rel = 'preload';
-    preload.as = 'image';
-    preload.href = `images/${project}/${project}-05.webp`;
-    preload.fetchPriority = 'high';
-    document.head.appendChild(preload);
-  })();
+  // (function () {
+  //   const params = new URLSearchParams(window.location.search);
+  //   const project = params.get('project');
+  //   if (!project) return;
+  //   const preload = document.createElement('link');
+  //   preload.rel = 'preload';
+  //   preload.as = 'image';
+  //   preload.href = `images/${project}/${project}-05.webp`;
+  //   preload.fetchPriority = 'high';
+  //   document.head.appendChild(preload);
+  // })();
   
 </script>
 </body>
