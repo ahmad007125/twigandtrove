@@ -237,7 +237,7 @@ function loadImages() {
 }
 
 function startLoadingImages() {
-  setTimeout(loadImages, 2000); // 500ms delay after page load
+  setTimeout(loadImages, 00); // 500ms delay after page load
 }
 
 // Create all thumbnails with skeletons
@@ -259,11 +259,12 @@ for (let i = 1; i <= project.imageCount; i++) {
     project.altTags?.[i - 1] ||
     `${project.title} — image ${i} by Kimberly Knight of Twig and Trove Interiors Dallas`;
 
-  img.loading = i === 5 ? "eager" : "lazy";
+  // img.loading = i === 5 ? "eager" : "lazy";
 
-  if (i === 5) {
-    img.fetchPriority = "high";
-  }
+  // if (i === 5) {
+  //   img.fetchPriority = "high";
+  // }
+  img.loading = "lazy";
 
   img.style.opacity = "0";
   img.style.transition = "opacity 0.35s ease";
