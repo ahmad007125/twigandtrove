@@ -107,10 +107,144 @@
   </div>
 </main>
 
-<!-- <script src="projects.js" defer></script> -->
+<script src="projects.js" defer></script>
 <script src="nav.js" defer></script>
 <script>
+  window.addEventListener('load', function () {
+    const params = new URLSearchParams(location.search);
+    const key = params.get('project');
+    const startIdx = parseInt(params.get('start') || '1') - 1;
 
+    const allProjects = [...PROJECTS.portfolio, ...PROJECTS.styling];
+    const project = allProjects.find(p => p.key === key);
+    const isPortfolio = PROJECTS.portfolio.find(p => p.key === key);
+
+    if (!project) {
+      location.href = 'portfolio.html';
+    } else {
+      document.getElementById('page-title').textContent = `${project.title} — Twig & Trove Interiors`;
+      document.getElementById('page-desc').setAttribute('content', project.description);
+      // Set page title and meta
+
+      // Active nav
+      if (isPortfolio) {
+        document.getElementById('nav-portfolio').classList.add('active');
+      } else {
+        document.getElementById('nav-styling').classList.add('active');
+      }
+
+      // Back link
+      document.getElementById('back-link').href = `landing.html?project=${key}`;
+
+      // Credits in header
+      const meta = document.getElementById('gallery-meta');
+      meta.innerHTML = `<div style="font-family:var(--serif);font-size:22px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--charcoal);margin-bottom:10px;">${project.title}</div>` +
+        project.credits.map(c => `<div><span style="text-transform:uppercase;letter-spacing:0.14em;font-size:9px;">${c.label}:</span> ${c.value}</div>`).join('');
+
+      // Build gallery
+      // const track = document.getElementById('gallery-track');
+      // for (let i = 1; i <= project.imageCount; i++) {
+      //   const item = document.createElement('div');
+      //   item.className = 'hgallery-item';
+      //   const img = document.createElement('img');
+      //   img.src = projectImagePath(key, i);
+      //   const alt = (project.altTags && project.altTags[i-1])
+      //     ? project.altTags[i-1]
+      //     : `${project.title} — interior by Kimberly Knight of Twig and Trove Interiors Dallas`;
+      //   img.alt = alt;
+      //   if (i > 3) img.loading = 'lazy';
+      //   item.appendChild(img);
+      //   track.appendChild(item);
+      // }
+      // Build gallery
+      const track = document.getElementById('gallery-track');
+      for (let i = 1; i <= project.imageCount; i++) {
+        const item = document.createElement('div');
+        item.className = 'hgallery-item';
+        const img = document.createElement('img');
+        img.src = projectImagePath(key, i);
+        const alt = (project.altTags && project.altTags[i - 1])
+          ? project.altTags[i - 1]
+          : `${project.title} — interior by Kimberly Knight of Twig and Trove Interiors Dallas`;
+        img.alt = alt;
+        img.width = 300;
+        img.height = 200;
+        // First 3 images: eager + high priority
+        if (i <= 3) {
+          img.loading = 'eager';
+          img.fetchPriority = 'high';
+        } else {
+          img.loading = 'lazy';
+        }
+        item.appendChild(img);
+        track.appendChild(item);
+      }
+
+      // Drag scroll
+      initDragScroll(track);
+      document.getElementById('footer-wrap').innerHTML = footerHTML();
+
+      // Scroll to start index
+      if (startIdx > 0) {
+        setTimeout(() => {
+          const items = track.querySelectorAll('.hgallery-item');
+          if (items[startIdx]) {
+            items[startIdx].scrollIntoView({ behavior: 'instant', inline: 'start' });
+          }
+        }, 100);
+      }
+    }
+  });
+
+  
+  function toggleMobileMenu() {
+    const menu = document.getElementById('nav-mobile-menu');
+    if (menu) menu.classList.toggle('open');
+  }
+
+
+// (function () {
+//   const params = new URLSearchParams(window.location.search);
+//   const project = params.get('project');
+//   const start = params.get('start') || '1';
+//   if (!project) return;
+//   const image = `images/${project}/${project}-${String(start).padStart(2, '0')}.webp`;
+//   const preload = document.createElement('link');
+//   preload.rel = 'preload';
+//   preload.as = 'image';
+//   preload.href = image;
+//   preload.fetchPriority = 'high';
+//   document.head.appendChild(preload);
+// })();
+
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const project = params.get('project');
+  const start = parseInt(params.get('start') || '1', 10);
+  if (!project) return;
+  // Always preload the first image
+  const firstImage = `images/${project}/${project}-01.webp`;
+  const firstPreload = document.createElement('link');
+  firstPreload.rel = 'preload';
+  firstPreload.as = 'image';
+  firstPreload.href = firstImage;
+  firstPreload.fetchPriority = 'high';
+  document.head.appendChild(firstPreload);
+  // Preload target + previous 3 images
+  for (let i = start; i >= Math.max(1, start - 3); i--) {
+    const image = `images/${project}/${project}-${String(i).padStart(2, '0')}.webp`;
+    // Skip if it's the first image (already added)
+    if (i === 1) continue;
+    const preload = document.createElement('link');
+    preload.rel = 'preload';
+    preload.as = 'image';
+    preload.href = image;
+    if (i === start) {
+      preload.fetchPriority = 'high';
+    }
+    document.head.appendChild(preload);
+  }
+})();
 
 
 
@@ -474,158 +608,6 @@ function projectImagePath(key, index, padded = true) {
 function coverImagePath(key) {
   return `images/covers/${key}.webp`;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // window.addEventListener('load', function () {
-    const params = new URLSearchParams(location.search);
-    const key = params.get('project');
-    const startIdx = parseInt(params.get('start') || '1') - 1;
-
-    const allProjects = [...PROJECTS.portfolio, ...PROJECTS.styling];
-    const project = allProjects.find(p => p.key === key);
-    const isPortfolio = PROJECTS.portfolio.find(p => p.key === key);
-
-    if (!project) {
-      location.href = 'portfolio.html';
-    } else {
-      document.getElementById('page-title').textContent = `${project.title} — Twig & Trove Interiors`;
-      document.getElementById('page-desc').setAttribute('content', project.description);
-      // Set page title and meta
-
-      // Active nav
-      if (isPortfolio) {
-        document.getElementById('nav-portfolio').classList.add('active');
-      } else {
-        document.getElementById('nav-styling').classList.add('active');
-      }
-
-      // Back link
-      document.getElementById('back-link').href = `landing.html?project=${key}`;
-
-      // Credits in header
-      const meta = document.getElementById('gallery-meta');
-      meta.innerHTML = `<div style="font-family:var(--serif);font-size:22px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--charcoal);margin-bottom:10px;">${project.title}</div>` +
-        project.credits.map(c => `<div><span style="text-transform:uppercase;letter-spacing:0.14em;font-size:9px;">${c.label}:</span> ${c.value}</div>`).join('');
-
-      // Build gallery
-      // const track = document.getElementById('gallery-track');
-      // for (let i = 1; i <= project.imageCount; i++) {
-      //   const item = document.createElement('div');
-      //   item.className = 'hgallery-item';
-      //   const img = document.createElement('img');
-      //   img.src = projectImagePath(key, i);
-      //   const alt = (project.altTags && project.altTags[i-1])
-      //     ? project.altTags[i-1]
-      //     : `${project.title} — interior by Kimberly Knight of Twig and Trove Interiors Dallas`;
-      //   img.alt = alt;
-      //   if (i > 3) img.loading = 'lazy';
-      //   item.appendChild(img);
-      //   track.appendChild(item);
-      // }
-      // Build gallery
-      const track = document.getElementById('gallery-track');
-      for (let i = 1; i <= project.imageCount; i++) {
-        const item = document.createElement('div');
-        item.className = 'hgallery-item';
-        const img = document.createElement('img');
-        img.src = projectImagePath(key, i);
-        const alt = (project.altTags && project.altTags[i - 1])
-          ? project.altTags[i - 1]
-          : `${project.title} — interior by Kimberly Knight of Twig and Trove Interiors Dallas`;
-        img.alt = alt;
-        img.width = 300;
-        img.height = 200;
-        // First 3 images: eager + high priority
-        if (i <= 3) {
-          img.loading = 'eager';
-          img.fetchPriority = 'high';
-        } else {
-          img.loading = 'lazy';
-        }
-        item.appendChild(img);
-        track.appendChild(item);
-      }
-
-      // Drag scroll
-      window.addEventListener('load', function () {
-        initDragScroll(track);
-        document.getElementById('footer-wrap').innerHTML = footerHTML();
-      });
-
-      // Scroll to start index
-      if (startIdx > 0) {
-        setTimeout(() => {
-          const items = track.querySelectorAll('.hgallery-item');
-          if (items[startIdx]) {
-            items[startIdx].scrollIntoView({ behavior: 'instant', inline: 'start' });
-          }
-        }, 100);
-      }
-    }
-  // });
-
-  
-  function toggleMobileMenu() {
-    const menu = document.getElementById('nav-mobile-menu');
-    if (menu) menu.classList.toggle('open');
-  }
-
-
-// (function () {
-//   const params = new URLSearchParams(window.location.search);
-//   const project = params.get('project');
-//   const start = params.get('start') || '1';
-//   if (!project) return;
-//   const image = `images/${project}/${project}-${String(start).padStart(2, '0')}.webp`;
-//   const preload = document.createElement('link');
-//   preload.rel = 'preload';
-//   preload.as = 'image';
-//   preload.href = image;
-//   preload.fetchPriority = 'high';
-//   document.head.appendChild(preload);
-// })();
-
-(function () {
-  const params = new URLSearchParams(window.location.search);
-  const project = params.get('project');
-  const start = parseInt(params.get('start') || '1', 10);
-  if (!project) return;
-  // Always preload the first image
-  const firstImage = `images/${project}/${project}-01.webp`;
-  const firstPreload = document.createElement('link');
-  firstPreload.rel = 'preload';
-  firstPreload.as = 'image';
-  firstPreload.href = firstImage;
-  firstPreload.fetchPriority = 'high';
-  document.head.appendChild(firstPreload);
-  // Preload target + previous 3 images
-  for (let i = start; i >= Math.max(1, start - 3); i--) {
-    const image = `images/${project}/${project}-${String(i).padStart(2, '0')}.webp`;
-    // Skip if it's the first image (already added)
-    if (i === 1) continue;
-    const preload = document.createElement('link');
-    preload.rel = 'preload';
-    preload.as = 'image';
-    preload.href = image;
-    if (i === start) {
-      preload.fetchPriority = 'high';
-    }
-    document.head.appendChild(preload);
-  }
-})();
 
 
 </script>
