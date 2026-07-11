@@ -130,10 +130,10 @@
   </div>
 </main>
 
-<script src="projects.js"></script>
+<script src="projects.js" defer></script>
 <script src="nav.js" defer></script>
 <script>
-  // window.addEventListener('load', function () {
+  window.addEventListener('load', function () {
     // Get project key from URL
     const params = new URLSearchParams(location.search);
     const key = params.get('project');
@@ -236,30 +236,27 @@
 
 
 
+      document.getElementById('footer-wrap').innerHTML = footerHTML();
     }
-    // });
-    
-    function toggleMobileMenu() {
-      const menu = document.getElementById('nav-mobile-menu');
-      if (menu) menu.classList.toggle('open');
-    }
-    
-    (function () {
-      const params = new URLSearchParams(window.location.search);
-      const project = params.get('project');
-      if (!project) return;
-      const preload = document.createElement('link');
-      preload.rel = 'preload';
-      preload.as = 'image';
-      preload.href = `images/${project}/${project}-05.webp`;
-      preload.fetchPriority = 'high';
-      document.head.appendChild(preload);
-    })();
-    
-    window.addEventListener('load', function () {
-    document.getElementById('footer-wrap').innerHTML = footerHTML();
-    })
+  });
 
-  </script>
+  function toggleMobileMenu() {
+    const menu = document.getElementById('nav-mobile-menu');
+    if (menu) menu.classList.toggle('open');
+  }
+
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    const project = params.get('project');
+    if (!project) return;
+    const preload = document.createElement('link');
+    preload.rel = 'preload';
+    preload.as = 'image';
+    preload.href = `images/${project}/${project}-05.webp`;
+    preload.fetchPriority = 'high';
+    document.head.appendChild(preload);
+  })();
+  
+</script>
 </body>
 </html>
