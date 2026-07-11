@@ -208,7 +208,7 @@
       showProjectShimmer();
       setTimeout(() => {
         renderProjectInfo(project);
-      }, 1000);
+      }, 500);
 
 
     
@@ -220,36 +220,73 @@
       //   div.onclick = () => location.href = `gallery.html?project=${key}&start=${i}`;
       //   const img = document.createElement('img');
       //   img.src = projectImagePath(key, i);
-      //   const alt = (project.altTags && project.altTags[i-1])
-      //     ? project.altTags[i-1]
+      //   const alt = (project.altTags && project.altTags[i - 1])
+      //     ? project.altTags[i - 1]
       //     : `${project.title} — image ${i} by Kimberly Knight of Twig and Trove Interiors Dallas`;
       //   img.alt = alt;
-      //   // img.loading = 'lazy';
-      //   img.fetchPriority = 'high';
+      //   if (i === 5) {
+      //     img.fetchPriority = 'high';
+      //     img.loading = 'eager';
+      //   } else {
+      //     img.loading = 'lazy';
+      //   }
       //   div.appendChild(img);
       //   grid.appendChild(div);
       // }
 
-      const grid = document.getElementById('thumb-grid');
-      for (let i = 1; i <= project.imageCount; i++) {
-        const div = document.createElement('div');
-        div.className = 'landing-thumb';
-        div.onclick = () => location.href = `gallery.html?project=${key}&start=${i}`;
-        const img = document.createElement('img');
-        img.src = projectImagePath(key, i);
-        const alt = (project.altTags && project.altTags[i - 1])
-          ? project.altTags[i - 1]
-          : `${project.title} — image ${i} by Kimberly Knight of Twig and Trove Interiors Dallas`;
-        img.alt = alt;
-        if (i === 5) {
-          img.fetchPriority = 'high';
-          img.loading = 'eager';
-        } else {
-          img.loading = 'lazy';
-        }
-        div.appendChild(img);
-        grid.appendChild(div);
-      }
+      const grid = document.getElementById("thumb-grid");
+
+// Show image shimmers
+function showImageShimmer(count) {
+  grid.innerHTML = "";
+
+  for (let i = 1; i <= count; i++) {
+    const div = document.createElement("div");
+    div.className = "landing-thumb";
+    div.innerHTML = `
+      <div class="shimmer" style="width:100%;height:100%;min-height:300px;"></div>
+    `;
+    grid.appendChild(div);
+  }
+}
+
+// Render actual images
+function renderImages() {
+  grid.innerHTML = "";
+
+  for (let i = 1; i <= project.imageCount; i++) {
+    const div = document.createElement("div");
+    div.className = "landing-thumb";
+    div.onclick = () =>
+      location.href = `gallery.html?project=${key}&start=${i}`;
+
+    const img = document.createElement("img");
+    img.src = projectImagePath(key, i);
+
+    img.alt =
+      project.altTags && project.altTags[i - 1]
+        ? project.altTags[i - 1]
+        : `${project.title} — image ${i} by Kimberly Knight of Twig and Trove Interiors Dallas`;
+
+    if (i === 5) {
+      img.fetchPriority = "high";
+      img.loading = "eager";
+    } else {
+      img.loading = "lazy";
+    }
+
+    div.appendChild(img);
+    grid.appendChild(div);
+  }
+}
+
+// Show shimmer immediately
+showImageShimmer(project.imageCount);
+
+// Replace with images after 600ms
+setTimeout(() => {
+  renderImages();
+}, 500);
 
 
 
