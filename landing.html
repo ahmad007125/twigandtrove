@@ -202,97 +202,26 @@
       //   grid.appendChild(div);
       // }
 
-      // const grid = document.getElementById('thumb-grid');
-      // for (let i = 1; i <= project.imageCount; i++) {
-      //   const div = document.createElement('div');
-      //   div.className = 'landing-thumb';
-      //   div.onclick = () => location.href = `gallery.html?project=${key}&start=${i}`;
-      //   const img = document.createElement('img');
-      //   img.src = projectImagePath(key, i);
-      //   const alt = (project.altTags && project.altTags[i - 1])
-      //     ? project.altTags[i - 1]
-      //     : `${project.title} — image ${i} by Kimberly Knight of Twig and Trove Interiors Dallas`;
-      //   img.alt = alt;
-      //   if (i === 5) {
-      //     img.fetchPriority = 'high';
-      //     img.loading = 'eager';
-      //   } else {
-      //     img.loading = 'lazy';
-      //   }
-      //   div.appendChild(img);
-      //   grid.appendChild(div);
-      // }
-
-
-      
-      const grid = document.getElementById("thumb-grid");
-const images = [];
-
-function loadImages() {
-  images.forEach((img) => {
-    if (!img.src) {
-      img.src = img.dataset.src;
-    }
-  });
-}
-
-function startLoadingImages() {
-  setTimeout(loadImages, 00); // 500ms delay after page load
-}
-
-// Create all thumbnails with skeletons
-for (let i = 1; i <= project.imageCount; i++) {
-  const div = document.createElement("div");
-  div.className = "landing-thumb";
-  div.onclick = () =>
-    (location.href = `gallery.html?project=${key}&start=${i}`);
-
-  // Skeleton
-  const skeleton = document.createElement("div");
-  skeleton.className = "thumb-skeleton";
-  div.appendChild(skeleton);
-
-  // Image
-  const img = document.createElement("img");
-
-  img.alt =
-    project.altTags?.[i - 1] ||
-    `${project.title} — image ${i} by Kimberly Knight of Twig and Trove Interiors Dallas`;
-
-  // img.loading = i === 5 ? "eager" : "lazy";
-
-  // if (i === 5) {
-  //   img.fetchPriority = "high";
-  // }
-  img.loading = "lazy";
-
-  img.style.opacity = "0";
-  img.style.transition = "opacity 0.35s ease";
-
-  // Save image path
-  img.dataset.src = projectImagePath(key, i);
-
-  img.onload = () => {
-    skeleton.remove();
-    img.style.opacity = "1";
-  };
-
-  img.onerror = () => {
-    console.error("Failed to load:", img.dataset.src);
-    skeleton.remove();
-  };
-
-  div.appendChild(img);
-  grid.appendChild(div);
-
-  images.push(img);
-}
-// Load images only after the entire page has finished loading
-if (document.readyState === "complete") {
-  startLoadingImages();
-} else {
-  window.addEventListener("load", startLoadingImages, { once: true });
-}
+      const grid = document.getElementById('thumb-grid');
+      for (let i = 1; i <= project.imageCount; i++) {
+        const div = document.createElement('div');
+        div.className = 'landing-thumb';
+        div.onclick = () => location.href = `gallery.html?project=${key}&start=${i}`;
+        const img = document.createElement('img');
+        img.src = projectImagePath(key, i);
+        const alt = (project.altTags && project.altTags[i - 1])
+          ? project.altTags[i - 1]
+          : `${project.title} — image ${i} by Kimberly Knight of Twig and Trove Interiors Dallas`;
+        img.alt = alt;
+        if (i === 5) {
+          img.fetchPriority = 'high';
+          img.loading = 'eager';
+        } else {
+          img.loading = 'lazy';
+        }
+        div.appendChild(img);
+        grid.appendChild(div);
+      }
 
 
 
@@ -305,17 +234,17 @@ if (document.readyState === "complete") {
     if (menu) menu.classList.toggle('open');
   }
 
-  // (function () {
-  //   const params = new URLSearchParams(window.location.search);
-  //   const project = params.get('project');
-  //   if (!project) return;
-  //   const preload = document.createElement('link');
-  //   preload.rel = 'preload';
-  //   preload.as = 'image';
-  //   preload.href = `images/${project}/${project}-05.webp`;
-  //   preload.fetchPriority = 'high';
-  //   document.head.appendChild(preload);
-  // })();
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    const project = params.get('project');
+    if (!project) return;
+    const preload = document.createElement('link');
+    preload.rel = 'preload';
+    preload.as = 'image';
+    preload.href = `images/${project}/${project}-05.webp`;
+    preload.fetchPriority = 'high';
+    document.head.appendChild(preload);
+  })();
   
 </script>
 </body>
