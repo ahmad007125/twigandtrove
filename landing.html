@@ -214,26 +214,74 @@
 
     
       // Thumbnails
+      // const grid = document.getElementById('thumb-grid');
+      // for (let i = 1; i <= project.imageCount; i++) {
+      //   const div = document.createElement('div');
+      //   div.className = 'landing-thumb';
+      //   div.onclick = () => location.href = `gallery.html?project=${key}&start=${i}`;
+      //   const img = document.createElement('img');
+      //   img.src = projectImagePath(key, i);
+      //   const alt = (project.altTags && project.altTags[i - 1])
+      //     ? project.altTags[i - 1]
+      //     : `${project.title} — image ${i} by Kimberly Knight of Twig and Trove Interiors Dallas`;
+      //   img.alt = alt;
+      //   if (i === 5) {
+      //     img.fetchPriority = 'high';
+      //     img.loading = 'eager';
+      //   } else {
+      //     img.loading = 'lazy';
+      //   }
+      //   div.appendChild(img);
+      //   grid.appendChild(div);
+      // }
+
+ 
+      
+
       const grid = document.getElementById('thumb-grid');
-      for (let i = 1; i <= project.imageCount; i++) {
-        const div = document.createElement('div');
-        div.className = 'landing-thumb';
-        div.onclick = () => location.href = `gallery.html?project=${key}&start=${i}`;
-        const img = document.createElement('img');
-        img.src = projectImagePath(key, i);
-        const alt = (project.altTags && project.altTags[i - 1])
-          ? project.altTags[i - 1]
-          : `${project.title} — image ${i} by Kimberly Knight of Twig and Trove Interiors Dallas`;
-        img.alt = alt;
-        if (i === 5) {
-          img.fetchPriority = 'high';
-          img.loading = 'eager';
-        } else {
-          img.loading = 'lazy';
-        }
-        div.appendChild(img);
-        grid.appendChild(div);
-      }
+
+for (let i = 1; i <= project.imageCount; i++) {
+
+    const number = String(i).padStart(2, '0');
+
+    const div = document.createElement('div');
+    div.className = 'landing-thumb';
+    div.onclick = () => location.href = `gallery.html?project=${key}&start=${i}`;
+
+    const picture = document.createElement('picture');
+
+    // Mobile source
+    const source = document.createElement('source');
+    source.media = '(max-width: 768px)';
+    source.srcset = `images/${key}/${key}-${number}-mobile.webp`;
+
+    // Desktop image
+    const img = document.createElement('img');
+    img.src = `images/${key}/${key}-${number}-desktop.webp`;
+
+    const alt = (project.altTags && project.altTags[i - 1])
+        ? project.altTags[i - 1]
+        : `${project.title} — image ${i} by Kimberly Knight of Twig and Trove Interiors Dallas`;
+
+    img.alt = alt;
+
+    // Use the actual dimensions of your desktop image
+    img.width = 1600;
+    img.height = 1067;
+
+    if (i === 5) {
+        img.fetchPriority = 'high';
+        img.loading = 'eager';
+    } else {
+        img.loading = 'lazy';
+    }
+
+    picture.appendChild(source);
+    picture.appendChild(img);
+
+    div.appendChild(picture);
+    grid.appendChild(div);
+}
 
 
 
