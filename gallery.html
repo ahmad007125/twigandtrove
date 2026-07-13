@@ -47,6 +47,7 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      justify-content: space-between;
     }
     .hgallery-track { flex: 1; min-height: 0; }
 
@@ -100,10 +101,12 @@
     </div>
     <div class="gallery-rule"></div>
     <div class="hgallery-track" id="gallery-track"></div>
-    <div style="flex-shrink:0;padding:14px 48px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;border-top:0.5px solid var(--rule);">
-      <span style="display:block;width:32px;height:0.5px;background:var(--muted);"></span>Drag to explore &nbsp;&rarr;
+    <div class="footer-wrapper">
+      <div style="flex-shrink:0;padding:14px 48px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;border-top:0.5px solid var(--rule);">
+        <span style="display:block;width:32px;height:0.5px;background:var(--muted);"></span>Drag to explore &nbsp;&rarr;
+      </div>
+      <div id="footer-wrap" style="flex-shrink:0;"></div>
     </div>
-    <div id="footer-wrap" style="flex-shrink:0;"></div>
   </div>
 </main>
 
